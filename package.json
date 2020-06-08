@@ -24,6 +24,7 @@
     "@angular/platform-browser-dynamic": "~9.1.9",
     "@angular/router": "~9.1.9",
     "@babel/compat-data": "^7.10.1",
+    "@ngrx/effects": "^9.2.0",
     "@ngrx/store": "^9.2.0",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
