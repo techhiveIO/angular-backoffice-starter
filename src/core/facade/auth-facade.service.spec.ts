@@ -5,7 +5,7 @@ import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {of} from 'rxjs';
 import {MOCKED_AUTH_STATE} from '../mocks/auth.mocks';
 import {AuthStateInterface} from '../models/authState.model';
-import {provideMockStore} from '@ngrx/store/testing';
+import {MockStore, provideMockStore} from '@ngrx/store/testing';
 import {take} from 'rxjs/operators';
 import {User} from '../models/user.model';
 
@@ -17,6 +17,7 @@ describe('Auth Facade Service', () => {
 
   let service: AuthFacade;
   let mockedAuthApi: jasmine.SpyObj<AuthApi>;
+  let store: MockStore;
 
   const configureTestingModule: () => void = () => {
     mockedAuthApi = jasmine.createSpyObj('AuthApi', ['login']);
@@ -35,7 +36,8 @@ describe('Auth Facade Service', () => {
       ],
     });
 
-    service = TestBed.get(AuthFacade);
+    store = TestBed.inject(MockStore);
+    service = TestBed.inject(AuthFacade);
   };
 
   describe('attempt login', () => {
@@ -44,10 +46,14 @@ describe('Auth Facade Service', () => {
     }));
 
     it('should dispatch the correct state actions', () => {
+      spyOn(store, 'dispatch').and.stub();
+
       service.attemptLogin('ali@techhive.io', '123123')
         .pipe(take(1))
         .subscribe((user: User) => {
           expect(user.id).toEqual(MOCKED_AUTH_STATE.user.id);
+          expect(store.dispatch).toHaveBeenCalledTimes(1);
+          expect(store.dispatch).toHaveBeenCalledWith(MOCKED_AUTH_STATE);
         });
     });
   });
