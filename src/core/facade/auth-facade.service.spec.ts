@@ -6,8 +6,8 @@ import {of} from 'rxjs';
 import {MOCKED_AUTH_STATE} from '../mocks/auth.mocks';
 import {AuthStateInterface} from '../models/authState.model';
 import {MockStore, provideMockStore} from '@ngrx/store/testing';
-import {take} from 'rxjs/operators';
 import {User} from '../models/user.model';
+import {actionLogin} from '../store/auth/auth.actions';
 
 describe('Auth Facade Service', () => {
   const mockedInitialAuthState: AuthStateInterface = {
@@ -46,14 +46,13 @@ describe('Auth Facade Service', () => {
     }));
 
     it('should dispatch the correct state actions', () => {
-      spyOn(store, 'dispatch').and.stub();
+      spyOn(store, 'dispatch').and.callThrough();
 
       service.attemptLogin('ali@techhive.io', '123123')
-        .pipe(take(1))
         .subscribe((user: User) => {
           expect(user.id).toEqual(MOCKED_AUTH_STATE.user.id);
           expect(store.dispatch).toHaveBeenCalledTimes(1);
-          expect(store.dispatch).toHaveBeenCalledWith(MOCKED_AUTH_STATE);
+          expect(store.dispatch).toHaveBeenCalledWith(actionLogin({authState: MOCKED_AUTH_STATE}));
         });
     });
   });
