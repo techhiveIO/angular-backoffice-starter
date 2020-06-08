@@ -1,5 +1,5 @@
 import {createReducer, on} from '@ngrx/store';
-import {login} from './auth.actions';
+import {actionLogin} from './auth.actions';
 import {AuthStateInterface} from '../../models/authState.model';
 
 const initialState: AuthStateInterface = {
@@ -9,7 +9,7 @@ const initialState: AuthStateInterface = {
 
 const reducer = createReducer(
   initialState,
-  on(login),
+  on(actionLogin),
 );
 
 export function authReducer(state, action) {

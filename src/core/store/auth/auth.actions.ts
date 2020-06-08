@@ -1,8 +1,8 @@
 import {createAction, props} from '@ngrx/store';
+import {AuthStateInterface} from '../../models/authState.model';
 
-export const login = createAction('[Auth] LOGIN',
+export const actionLogin = createAction('[Auth] LOGIN',
   props<{
-    email: string,
-    password: string,
+    authState: AuthStateInterface
   }>()
 );
