@@ -124,6 +124,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "th-angular-starter"
+    }
+  },
+  "defaultProject": "th-angular-starter",
+  "cli": {
+    "analytics": false
+  }
 }
