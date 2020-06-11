@@ -52,7 +52,7 @@ describe('Auth Facade Service', () => {
         .subscribe((user: User) => {
           expect(user.id).toEqual(MOCKED_AUTH_STATE.user.id);
           expect(store.dispatch).toHaveBeenCalledTimes(1);
-          expect(store.dispatch).toHaveBeenCalledWith(actionLogin({authState: MOCKED_AUTH_STATE}));
+          expect(store.dispatch).toHaveBeenCalledWith(actionLogin({payload: MOCKED_AUTH_STATE}));
         });
     });
   });

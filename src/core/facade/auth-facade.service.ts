@@ -19,7 +19,7 @@ export class AuthFacade {
   public attemptLogin(email: string, password: string): Observable<User> {
     return this.authApi.login(email, password)
       .pipe(
-        tap((authState: AuthStateInterface) => this.authStore.dispatch(actionLogin({authState}))),
+        tap((authState: AuthStateInterface) => this.authStore.dispatch(actionLogin({payload: authState}))),
         map((authState: AuthStateInterface) => authState.user),
       );
   }
