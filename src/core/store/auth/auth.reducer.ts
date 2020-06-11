@@ -1,5 +1,5 @@
 import {Action, createReducer, on} from '@ngrx/store';
-import {actionLogin, actionLogout} from './auth.actions';
+import {actionLogin, actionLogout} from './authActionTypes';
 import {AuthStateInterface} from '../../models/authState.model';
 
 export const initialState: AuthStateInterface = {

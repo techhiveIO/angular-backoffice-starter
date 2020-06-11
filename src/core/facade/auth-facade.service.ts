@@ -5,7 +5,7 @@ import {AuthStateInterface} from '../models/authState.model';
 import {Observable} from 'rxjs';
 import {User} from '../models/user.model';
 import {map, tap} from 'rxjs/operators';
-import {actionLogin} from '../store/auth/auth.actions';
+import {actionLogin} from '../store/auth/authActionTypes';
 
 @Injectable()
 export class AuthFacade {

@@ -1,6 +1,6 @@
 import {Action} from '@ngrx/store';
 import {authReducer, initialState} from './auth.reducer';
-import {actionLogin, actionLogout} from './auth.actions';
+import {actionLogin, actionLogout} from './authActionTypes';
 import {MOCKED_AUTH_STATE} from '../../mocks/auth.mocks';
 
 describe('Auth Reducer', () => {

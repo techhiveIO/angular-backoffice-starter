@@ -7,7 +7,7 @@ import {MOCKED_AUTH_STATE} from '../mocks/auth.mocks';
 import {AuthStateInterface} from '../models/authState.model';
 import {MockStore, provideMockStore} from '@ngrx/store/testing';
 import {User} from '../models/user.model';
-import {actionLogin} from '../store/auth/auth.actions';
+import {actionLogin} from '../store/auth/authActionTypes';
 
 describe('Auth Facade Service', () => {
   const mockedInitialAuthState: AuthStateInterface = {

@@ -11,4 +11,8 @@ export class LocalStorageFacade {
   public getAuthToken(): string {
     return localStorage.getItem(TOKEN_KEY);
   }
+
+  public clearAuthData(): void {
+    localStorage.clear();
+  }
 }

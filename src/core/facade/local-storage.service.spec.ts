@@ -17,7 +17,7 @@ describe('localStorageService', () => {
   describe('setAuthToken', () => {
     beforeEach(async(() => {
       configureTestingModule();
-      localStorage.clear();
+      service.clearAuthData();
     }));
 
     it('should save the token to localstorage', () => {
@@ -34,7 +34,7 @@ describe('localStorageService', () => {
   describe('getAuthToken', () => {
     beforeEach(async(() => {
       configureTestingModule();
-      localStorage.clear();
+      service.clearAuthData();
     }));
 
     it('should return null for non-existing token', () => {
@@ -53,6 +53,19 @@ describe('localStorageService', () => {
       const token = service.getAuthToken();
       expect(token).toEqual(mockedToken);
       expect(localStorage.getItem).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  describe('clearAuthData', () => {
+    beforeEach(async(() => {
+      configureTestingModule();
+      service.setAuthToken('token');
+    }));
+
+    it('should clear the auth token', () => {
+      service.clearAuthData();
+
+      expect(localStorage.getItem(TOKEN_KEY)).toBeNull()
     });
   });
 });
