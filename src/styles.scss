@@ -1,4 +1,3 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
@@ -12,11 +11,116 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$th-angular-starter-primary: mat-palette($mat-indigo);
-$th-angular-starter-accent: mat-palette($mat-pink, A200, A100, A400);
+$th-blue: #16498A;
+//#27ADD5
+//#4FC0B0
+//#152036
+//#BF2323
+
+$th-primary: (
+  50: #e4f2fa,
+  100: #bcddf3,
+  200: #94c8ec,
+  300: #6eb3e3,
+  400: #52a3df,
+  500: #3b94da,
+  600: #3387cd,
+  700: #2a75bb,
+  800: #2265a9,
+  900: #16488a,
+  A100: #6eb3e3,
+  A200: #52a3df,
+  A400: #3387cd,
+  A700: #2265a9,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $light-primary-text,
+    400: $light-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+);
+
+$th-accent: (
+  50: #e0f4f8,
+  100: #b0e1ee,
+  200: #7dcee4,
+  300: #4ebada,
+  400: #27acd5,
+  500: #009fd0,
+  600: #0091c3,
+  700: #007fb1,
+  800: #006f9e,
+  900: #00507f,
+  A100: #7dcee4,
+  A200: #4ebada,
+  A400: #27acd5,
+  A700: #009fd0,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $light-primary-text,
+    400: $light-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+);
+
+$th-warn: (
+  50: #feeaed,
+  100: #fdcbd0,
+  200: #eb9797,
+  300: #e06f6f,
+  400: #e94f4b,
+  500: #ec3e30,
+  600: #de3430,
+  700: #cc2a2a,
+  800: #bf2323,
+  900: #b01617,
+  A100: #e06f6f,
+  A200: #e94f4b,
+  A400: #ec3e30,
+  A700: #de3430,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $light-primary-text,
+    400: $light-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  )
+);
+
+$th-angular-starter-primary: mat-palette($th-primary);
+$th-angular-starter-accent: mat-palette($th-accent, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
-$th-angular-starter-warn: mat-palette($mat-red);
+$th-angular-starter-warn: mat-palette($th-warn);
 
 // Create the theme object (a Sass map containing all of the palettes).
 $th-angular-starter-theme: mat-light-theme($th-angular-starter-primary, $th-angular-starter-accent, $th-angular-starter-warn);
@@ -28,5 +132,11 @@ $th-angular-starter-theme: mat-light-theme($th-angular-starter-primary, $th-angu
 
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
