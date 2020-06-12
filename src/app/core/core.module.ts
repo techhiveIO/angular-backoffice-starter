@@ -1,15 +1,21 @@
 import {NgModule} from '@angular/core';
 import {AuthApi} from './api';
-import {AuthFacade, LocalStorageFacade} from './facade';
+import {AuthFacade, LocalStorageFacade, NotificationsFacade} from './facade';
 import {reducers} from './store/core.state';
 import {StoreModule} from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
+import {EffectsModule} from '@ngrx/effects';
 import {AuthStoreEffects} from './store/auth/auth.effects';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
+const LIBRARY_MODULES = [
+  MatSnackBarModule,
+];
 
 const SERVICES = [
   AuthApi,
   AuthFacade,
   LocalStorageFacade,
+  NotificationsFacade,
 ];
 
 @NgModule({
@@ -22,6 +28,7 @@ const SERVICES = [
       }
     }),
     EffectsModule.forRoot([AuthStoreEffects]),
+    ...LIBRARY_MODULES,
   ],
   exports: [],
   providers: [...SERVICES],
