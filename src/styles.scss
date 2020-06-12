@@ -131,6 +131,14 @@ $th-angular-starter-theme: mat-light-theme($th-angular-starter-primary, $th-angu
 @include angular-material-theme($th-angular-starter-theme);
 
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --color-primary: #16488a;
+  --color-secondary: #152036;
+  --color-tertiary: #27ADD5;
+  --color-danger: #BF2323;
+  --color-success: #4FC0B0;
+}
+
 
 html, body {
   height: 100%;
