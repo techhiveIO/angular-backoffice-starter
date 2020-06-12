@@ -46,7 +46,10 @@ describe('Notifications Facade', () => {
         service.displaySuccessMessage(MOCKED_NOTIFICATION_LABELS, MOCKED_SNACKBAR_CONFIG);
 
         expect(mockedSnackBar.open).toHaveBeenCalledTimes(1);
-        expect(mockedSnackBar.open).toHaveBeenCalledWith(MOCKED_NOTIFICATION_LABELS, MOCKED_SNACKBAR_CONFIG);
+        expect(mockedSnackBar.open).toHaveBeenCalledWith(
+          MOCKED_NOTIFICATION_LABELS.message,
+          MOCKED_NOTIFICATION_LABELS.action,
+          MOCKED_SNACKBAR_CONFIG);
       });
     });
   });
@@ -74,7 +77,11 @@ describe('Notifications Facade', () => {
         service.displayErrorMessage(MOCKED_NOTIFICATION_LABELS, MOCKED_SNACKBAR_CONFIG);
 
         expect(mockedSnackBar.open).toHaveBeenCalledTimes(1);
-        expect(mockedSnackBar.open).toHaveBeenCalledWith(MOCKED_NOTIFICATION_LABELS, MOCKED_SNACKBAR_CONFIG);
+        expect(mockedSnackBar.open).toHaveBeenCalledWith(
+          MOCKED_NOTIFICATION_LABELS.message,
+          MOCKED_NOTIFICATION_LABELS.action,
+          MOCKED_SNACKBAR_CONFIG
+        );
       });
     });
   });

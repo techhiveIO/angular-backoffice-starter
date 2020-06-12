@@ -8,6 +8,7 @@
     "build:prod": "ng build --prod",
     "test": "ng test --watch=false --browsers=ChromeHeadlessCustom",
     "test:watch": "ng test",
+    "test:cov": "ng test --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
@@ -26,6 +27,7 @@
     "@babel/compat-data": "^7.10.1",
     "@ngrx/effects": "^9.2.0",
     "@ngrx/store": "^9.2.0",
+    "karma-mocha-reporter": "^2.2.5",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"
