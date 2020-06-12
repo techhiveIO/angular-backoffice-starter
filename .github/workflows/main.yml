@@ -38,3 +38,6 @@ jobs:
         uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+      
+      - name: Deply to github Pages
+        run: ng deploy --repo=https://github.com/techhiveIO/Backoffice-start__AngularMaterial.git --name="AliObaji" --email=ali@techhive.io
