@@ -2,6 +2,20 @@
   margin: 40% auto auto 0;
 }
 
+.brand-logo {
+  margin-bottom: 4rem;
+  width: auto;
+  height: 5rem;
+}
+
+.auth-header {
+  margin-top: 0;
+}
+
+.auth-subheader {
+  margin: 0;
+}
+
 form {
   display: flex;
   flex-direction: column;
@@ -13,4 +27,9 @@ form {
   mat-checkbox {
     margin: 1rem 0;
   }
+}
+
+.auth-navigation {
+  margin: 0.5rem 0 0 auto;
+  font-style: italic;
 }
