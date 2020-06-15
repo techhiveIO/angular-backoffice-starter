@@ -1,40 +1,31 @@
-<div class="auth-container">
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>
-        Login to your account
-      </mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
+<div class="auth-content">
+  <form [formGroup]="formGroup">
+    <h2>Hello,</h2>
+    <h1>Sign in to BrandName</h1>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" type="text" placeholder="Email"/>
+      <mat-error *ngIf="formGroup.controls.email.errors?.required">This field is required</mat-error>
+      <mat-error *ngIf="formGroup.controls.email.errors?.email">Please enter a valid email.</mat-error>
+    </mat-form-field>
 
-      <form [formGroup]="formGroup">
-        <mat-form-field>
-          <mat-label>Email</mat-label>
-          <input matInput formControlName="email" type="text" placeholder="Email"/>
-          <mat-error *ngIf="formGroup.controls.email.errors?.required">This field is required</mat-error>
-          <mat-error *ngIf="formGroup.controls.email.errors?.email">Please enter a valid email.</mat-error>
-        </mat-form-field>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input matInput formControlName="password" type="password" placeholder="********"/>
+      <mat-error *ngIf="formGroup.controls.password.errors?.required">
+        You must enter a password to continue.
+      </mat-error>
+    </mat-form-field>
 
-        <mat-form-field>
-          <mat-label>Password</mat-label>
-          <input matInput formControlName="password" type="password" placeholder="********"/>
-          <mat-error *ngIf="formGroup.controls.password.errors?.required">
-            You must enter a password to continue.
-          </mat-error>
-        </mat-form-field>
+    <mat-checkbox formControlName="rememberMe">Remember Me</mat-checkbox>
 
-        <mat-checkbox formControlName="rememberMe">Remember Me</mat-checkbox>
-
-        <button
-          class="auth-action"
-          [disabled]="!formGroup.valid || isLoading"
-          mat-raised-button
-          color="primary"
-        >
-          Sign in
-        </button>
-      </form>
-
-    </mat-card-content>
-  </mat-card>
+    <button
+      class="auth-action"
+      [disabled]="!formGroup.valid || isLoading"
+      mat-raised-button
+      color="primary"
+    >
+      Sign in
+    </button>
+  </form>
 </div>

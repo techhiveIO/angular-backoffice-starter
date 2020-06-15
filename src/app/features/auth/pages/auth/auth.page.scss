@@ -1,0 +1,22 @@
+.auth-container {
+  display: flex;
+}
+
+.auth-action {
+  margin-top: 2rem;
+}
+
+.content-col, .brand-col {
+  height: 100vh;
+}
+
+.content-col {
+  flex-basis: 30%;
+  padding: 0 5rem;
+}
+
+.brand-col {
+  flex-grow: 2;
+
+  background: var(--color-secondary);
+}
