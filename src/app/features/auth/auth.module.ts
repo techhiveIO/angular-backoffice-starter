@@ -5,12 +5,14 @@ import {MatInputModule} from '@angular/material/input';
 import {SharedModule} from '../../shared/shared.module';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 
 const LIBRARY_MODULES = [
   MatCardModule,
   MatInputModule,
   MatCheckboxModule,
   MatButtonModule,
+  MatIconModule,
 ];
 
 const COMPONENTS = [...routedComponents];
