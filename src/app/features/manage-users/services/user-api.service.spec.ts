@@ -20,8 +20,8 @@ describe('UsersApiService', () => {
       ],
     });
 
-    httpMock = TestBed.get(HttpTestingController);
-    service = TestBed.get(UserApiService);
+    httpMock = TestBed.inject(HttpTestingController);
+    service = TestBed.inject(UserApiService);
   };
 
   afterEach(() => {

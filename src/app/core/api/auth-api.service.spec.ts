@@ -20,8 +20,8 @@ describe('Auth Api Service', () => {
       ],
     });
 
-    httpMock = TestBed.get(HttpTestingController);
-    service = TestBed.get(AuthApi);
+    httpMock = TestBed.inject(HttpTestingController);
+    service = TestBed.inject(AuthApi);
   };
 
   afterEach(() => {
