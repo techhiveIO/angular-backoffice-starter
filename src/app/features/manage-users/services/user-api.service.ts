@@ -16,6 +16,8 @@ export class UserApiService {
     return this.http
       .get(this.API_USERS)
       .pipe(
+        map((res: any) => res.data),
+        map(data => data.users),
         map((users: UserApiInterface[]) => {
           return users.map((user: UserApiInterface) => new User(user));
         }),
@@ -28,6 +30,8 @@ export class UserApiService {
     return this.http
       .get(this.API_USERS, {params})
       .pipe(
+        map((res: any) => res.data),
+        map(data => data.user),
         map((user: UserApiInterface) => new User(user)),
       );
   }
@@ -37,7 +41,7 @@ export class UserApiService {
   }
 
   public editUser(userID: string, fields: Partial<UserApiInterface>): Observable<any> {
-    return this.http.patch(this.API_USERS, fields);
+    return this.http.patch(this.API_USERS, {id: userID, ...fields});
   }
 
   public deleteUser(userID: string): Observable<any> {
