@@ -8,6 +8,8 @@ import {AuthStateInterface} from '../models/authState.model';
 import {MockStore, provideMockStore} from '@ngrx/store/testing';
 import {User} from '../models/user.model';
 import {actionLogin} from '../store/auth/authActionTypes';
+import {MemoizedSelector} from '@ngrx/store';
+import {selectIsAuthenticated} from '../store/auth/auth.selectors';
 
 describe('Auth Facade Service', () => {
   const mockedInitialAuthState: AuthStateInterface = {
@@ -18,6 +20,7 @@ describe('Auth Facade Service', () => {
   let service: AuthFacade;
   let mockedAuthApi: jasmine.SpyObj<AuthApi>;
   let store: MockStore;
+  let mockedIsAuthenticatedSelector: MemoizedSelector<AuthStateInterface, boolean>;
 
   const configureTestingModule: (userIsAuthenticated: boolean) => void = (userIsAuthenticated) => {
     mockedAuthApi = jasmine.createSpyObj('AuthApi', ['login']);
@@ -37,6 +40,10 @@ describe('Auth Facade Service', () => {
     });
 
     store = TestBed.inject(MockStore);
+    mockedIsAuthenticatedSelector = store.overrideSelector(
+      selectIsAuthenticated,
+      userIsAuthenticated,
+    );
     service = TestBed.inject(AuthFacade);
   };
 
@@ -54,6 +61,34 @@ describe('Auth Facade Service', () => {
           expect(store.dispatch).toHaveBeenCalledTimes(1);
           expect(store.dispatch).toHaveBeenCalledWith(actionLogin({payload: MOCKED_AUTH_STATE}));
         });
+    });
+  });
+
+  describe('isAuthenticated', () => {
+    describe('When user is not logged in', () => {
+      beforeEach(async(() => {
+        configureTestingModule(false);
+      }));
+
+      it('should return false', () => {
+        service.isAuthenticated()
+          .subscribe((isAuthenticated: boolean) => {
+            expect(isAuthenticated).toBe(false);
+          });
+      });
+    });
+
+    describe('When user is logged in', () => {
+      beforeEach(async(() => {
+        configureTestingModule(true);
+      }));
+
+      it('should return true', () => {
+        service.isAuthenticated()
+          .subscribe((isAuthenticated: boolean) => {
+            expect(isAuthenticated).toBe(true);
+          });
+      });
     });
   });
 });
