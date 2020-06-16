@@ -6,7 +6,7 @@ import {Observable, throwError} from 'rxjs';
 import {User, UserRole} from '../../../core/models/user.model';
 import {selectAllUsers} from '../store/users.selector';
 import {catchError, take, tap} from 'rxjs/operators';
-import {NotificationsFacade} from '../../../core/facade';
+import {NotificationsFacade} from '../../../core/services';
 
 @Injectable()
 export class UserFacadeService {

@@ -2,7 +2,7 @@ import {AuthGuardService} from './auth.guard';
 import {of} from 'rxjs';
 import {async, TestBed} from '@angular/core/testing';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {AuthFacade} from '../facade';
+import {AuthFacade} from '../auth/services';
 
 describe('AuthGuardService', () => {
   let service: AuthGuardService;

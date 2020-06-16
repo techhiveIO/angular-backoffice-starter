@@ -1,10 +1,10 @@
 import {AuthApi} from './auth-api.service';
 import {async, TestBed} from '@angular/core/testing';
 import {HttpClientTestingModule, HttpTestingController, TestRequest} from '@angular/common/http/testing';
-import {environment} from '../../../environments/environment';
-import {MOCKED_AUTH_API_STATE} from '../mocks/auth.mocks';
 import {take} from 'rxjs/operators';
-import {AuthStateInterface} from '../models/authState.model';
+import {AuthStateInterface} from '../../models/authState.model';
+import {MOCKED_AUTH_API_STATE} from '../../mocks/auth.mocks';
+import {environment} from '../../../../environments/environment';
 
 describe('Auth Api Service', () => {
   let service: AuthApi;

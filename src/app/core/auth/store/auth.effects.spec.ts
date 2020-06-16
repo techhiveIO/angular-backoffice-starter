@@ -4,7 +4,7 @@ import {async, TestBed} from '@angular/core/testing';
 import {actionLogin, actionLogout, AuthActionTypes} from './authActionTypes';
 import {MOCKED_AUTH_STATE} from '../../mocks/auth.mocks';
 import {RouterTestingModule} from '@angular/router/testing';
-import {LocalStorageFacade} from '../../facade';
+import {LocalStorageFacade} from '../../services';
 import {Router} from '@angular/router';
 
 describe('Auth State Effects', () => {

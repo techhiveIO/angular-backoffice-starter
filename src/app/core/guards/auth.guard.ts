@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {CanActivate} from '@angular/router';
 import {Observable} from 'rxjs';
-import {AuthFacade} from '../facade';
+import {AuthFacade} from '../auth/services';
 
 @Injectable({
   providedIn: 'root',

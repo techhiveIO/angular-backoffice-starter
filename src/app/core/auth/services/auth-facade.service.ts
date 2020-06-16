@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
-import {AuthApi} from '../api';
 import {select, Store} from '@ngrx/store';
-import {AuthStateInterface} from '../models/authState.model';
 import {Observable} from 'rxjs';
-import {User} from '../models/user.model';
 import {map, tap} from 'rxjs/operators';
-import {actionLogin} from '../store/auth/authActionTypes';
-import {selectIsAuthenticated} from '../store/auth/auth.selectors';
+import {selectIsAuthenticated} from '../store/auth.selectors';
+import {AuthStateInterface} from '../../models/authState.model';
+import {User} from '../../models/user.model';
+import {actionLogin} from '../store/authActionTypes';
+import {AuthApi} from './auth-api.service';
 
 @Injectable()
 export class AuthFacade {

@@ -1,6 +1,6 @@
-import {authReducer} from './auth/auth.reducer';
 import {ActionReducerMap} from '@ngrx/store';
-import {AuthStateInterface} from '../models/authState.model';
+import {authReducer} from './auth/store/auth.reducer';
+import {AuthStateInterface} from './models/authState.model';
 
 export const reducers: ActionReducerMap<CoreState> = {
   auth: authReducer,

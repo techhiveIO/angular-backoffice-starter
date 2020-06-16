@@ -1,11 +1,11 @@
 import {NgModule} from '@angular/core';
-import {AuthApi} from './api';
-import {AuthFacade, LocalStorageFacade, NotificationsFacade} from './facade';
-import {reducers} from './store/core.state';
+import {LocalStorageFacade, NotificationsFacade} from './services';
 import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
-import {AuthStoreEffects} from './store/auth/auth.effects';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {AuthApi, AuthFacade} from './auth/services';
+import {reducers} from './core.state';
+import {AuthStoreEffects} from './auth/store/auth.effects';
 
 const LIBRARY_MODULES = [
   MatSnackBarModule,
