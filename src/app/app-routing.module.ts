@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {UsersPageComponent} from './features/manage-users/pages';
+import {AuthGuardService} from './core/guards';
 
 const routes: Routes = [
   {
@@ -16,6 +17,7 @@ const routes: Routes = [
   {
     path: 'users',
     component: UsersPageComponent,
+    canActivate: [AuthGuardService],
   }
 ];
 

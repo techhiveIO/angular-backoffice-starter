@@ -19,7 +19,7 @@ describe('Auth Facade Service', () => {
   let mockedAuthApi: jasmine.SpyObj<AuthApi>;
   let store: MockStore;
 
-  const configureTestingModule: () => void = () => {
+  const configureTestingModule: (userIsAuthenticated: boolean) => void = (userIsAuthenticated) => {
     mockedAuthApi = jasmine.createSpyObj('AuthApi', ['login']);
     mockedAuthApi.login.and.returnValue(of(MOCKED_AUTH_STATE));
 
@@ -42,7 +42,7 @@ describe('Auth Facade Service', () => {
 
   describe('attempt login', () => {
     beforeEach(async(() => {
-      configureTestingModule();
+      configureTestingModule(false);
     }));
 
     it('should dispatch the correct state actions', () => {
