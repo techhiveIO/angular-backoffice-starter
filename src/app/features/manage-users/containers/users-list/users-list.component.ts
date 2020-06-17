@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
 import {Observable, Subscription} from 'rxjs';
 import {User} from '../../../../core/models/user.model';
 import {MatTableDataSource} from '@angular/material/table';
@@ -14,6 +14,8 @@ import {MatPaginator} from '@angular/material/paginator';
 export class UsersListComponent implements OnInit, OnDestroy {
   @Input() users: Observable<User[]>;
   @Input() isLoading = false;
+  @Output() deleteUser: EventEmitter<User> = new EventEmitter<User>();
+  @Output() editUser: EventEmitter<User> = new EventEmitter<User>();
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
@@ -38,5 +40,13 @@ export class UsersListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.usersSubscription.unsubscribe();
+  }
+
+  onDeleteUser(user: User): void {
+    this.deleteUser.emit(user);
+  }
+
+  onEditUserInfo(user: User): void {
+    this.editUser.emit(user);
   }
 }

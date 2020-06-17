@@ -1,3 +1,5 @@
 <app-users-list
   [users]="allUsers$"
+  (deleteUser)="onDeleteUser($event)"
+  (editUser)="onEditUserInfo($event)"
 ></app-users-list>

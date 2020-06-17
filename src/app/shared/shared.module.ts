@@ -1,8 +1,16 @@
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
+import {ConfirmationDialogComponent} from './components';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatButtonModule} from '@angular/material/button';
 
-const ENTRY_COMPONENTS = [];
+const LIBRARY_MODULES = [
+  MatDialogModule,
+  MatButtonModule,
+];
+
+const ENTRY_COMPONENTS = [ConfirmationDialogComponent];
 const COMPONENTS = [...ENTRY_COMPONENTS];
 
 @NgModule({
@@ -10,6 +18,7 @@ const COMPONENTS = [...ENTRY_COMPONENTS];
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
+    LIBRARY_MODULES,
   ],
   declarations: [
     ...COMPONENTS
@@ -21,6 +30,7 @@ const COMPONENTS = [...ENTRY_COMPONENTS];
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
+    ...LIBRARY_MODULES,
   ],
 })
 

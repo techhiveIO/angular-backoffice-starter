@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {UsersListComponent} from './containers';
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
-import {MatButtonModule} from '@angular/material/button';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {UserApiService} from './services/user-api.service';
 import {StoreModule} from '@ngrx/store';
@@ -28,7 +27,6 @@ const LIBRARY_MODULES = [
   MatTableModule,
   MatSortModule,
   MatPaginatorModule,
-  MatButtonModule,
   MatProgressBarModule,
   MatIconModule,
 ];
