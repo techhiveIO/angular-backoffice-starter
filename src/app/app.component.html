@@ -1,1 +1,14 @@
-<router-outlet></router-outlet>
+<ng-container>
+  <mat-sidenav-container>
+    <mat-sidenav
+      *ngIf="loadMembersLayout"
+      mode="side"
+      opened
+      [fixedInViewport]="true">
+      Sidenav Content
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</ng-container>
