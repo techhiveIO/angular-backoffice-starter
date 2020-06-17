@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {ConfirmationWindowInterface, DefaultConfirmationWindowMessage} from '../../models/confirmation-window.model';
+import {ConfirmationWindowInterface, DefaultConfirmationWindowMessage} from '../../models/confirmation-dialog.model';
 
 @Component({
   templateUrl: './confirmation-dialog.component.html',

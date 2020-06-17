@@ -1,3 +1,7 @@
+export interface ConfirmedDialogResponse {
+  confirmed: boolean;
+}
+
 export interface ConfirmationWindowInterface {
   header: string;
   message: string;
