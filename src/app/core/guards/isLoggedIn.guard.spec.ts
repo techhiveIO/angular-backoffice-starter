@@ -32,7 +32,7 @@ describe('IsLoggedInGuard', () => {
       }));
 
       it('should return false', () => {
-        service.canLoad()
+        service.canActivate()
           .subscribe((canPass: boolean) => {
             expect(canPass).toBe(false);
           });
@@ -47,7 +47,7 @@ describe('IsLoggedInGuard', () => {
       }));
 
       it('should return true', () => {
-        service.canLoad()
+        service.canActivate()
           .subscribe((canPass: boolean) => {
             expect(canPass).toBe(true);
           });

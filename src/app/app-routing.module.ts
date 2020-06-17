@@ -14,17 +14,12 @@ const routes: Routes = [
     path: 'auth',
     loadChildren: () =>
       import('./features/auth/auth.module').then(m => m.AuthModule),
-    canLoad: [IsLoggedInGuard],
+    canActivate: [IsLoggedInGuard],
   },
   {
     path: 'users',
     component: UsersPageComponent,
     canActivate: [AuthGuardService],
-  },
-  {
-    path: '*',
-    redirectTo: '/',
-    pathMatch: 'full',
   }
 ];
 
