@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthFacade} from './core/auth/services';
 import {NavigationStart, Router, RouterEvent} from '@angular/router';
 
 @Component({
@@ -11,7 +10,7 @@ export class AppComponent implements OnInit {
   loadMembersLayout = true;
   drawerOpened = false;
 
-  constructor(private readonly authFacade: AuthFacade, private readonly router: Router) {
+  constructor(private readonly router: Router) {
   }
 
   ngOnInit(): void {
