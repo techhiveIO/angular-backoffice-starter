@@ -1,5 +1,9 @@
 :host {
   display: block;
 
-  padding: 5rem;
+  padding: 2rem 5rem 5rem;
+
+  ::ng-deep h2, p {
+    color: #444444;
+  }
 }

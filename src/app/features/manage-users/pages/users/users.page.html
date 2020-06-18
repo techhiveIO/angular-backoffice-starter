@@ -1,4 +1,9 @@
 <app-general-layout>
+  <h2>Users and Employees</h2>
+  <p>
+    This is a list of all the users with access to your organization's back-office system.
+    Anyone with admin access may add and remove users, or edit the information of any current user.
+  </p>
   <app-users-list
     [users]="allUsers$"
     (deleteUser)="onDeleteUser($event)"

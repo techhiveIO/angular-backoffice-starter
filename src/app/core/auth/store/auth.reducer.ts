@@ -3,7 +3,7 @@ import {actionLogin, actionLogout} from './authActionTypes';
 import {AuthStateInterface} from '../../models/authState.model';
 
 export const initialState: AuthStateInterface = {
-  token: '',
+  token: 'der',
   user: null,
 };
 
