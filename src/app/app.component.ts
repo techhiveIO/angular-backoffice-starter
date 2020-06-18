@@ -8,7 +8,8 @@ import {NavigationStart, Router, RouterEvent} from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  loadMembersLayout = false;
+  loadMembersLayout = true;
+  drawerOpened = false;
 
   constructor(private readonly authFacade: AuthFacade, private readonly router: Router) {
   }
@@ -19,5 +20,9 @@ export class AppComponent implements OnInit {
         this.loadMembersLayout = !e.url.includes('/auth');
       }
     });
+  }
+
+  toggleDrawer(): void {
+    this.drawerOpened = !this.drawerOpened;
   }
 }

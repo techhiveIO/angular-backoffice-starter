@@ -2,13 +2,25 @@
   <mat-sidenav-container>
     <mat-sidenav
       *ngIf="loadMembersLayout"
+      [opened]="drawerOpened"
       mode="side"
-      opened
       [fixedInViewport]="true">
-      Sidenav Content
+      <img src="assets/brand/logo.svg" class="brand-logo"/>
     </mat-sidenav>
     <mat-sidenav-content>
+
+      <button
+        *ngIf="loadMembersLayout"
+        class="drawer-toggle"
+        mat-button
+        color="primary"
+        (click)="toggleDrawer()"
+      >
+        <mat-icon>{{drawerOpened ? 'menu' : 'menu_open'}}</mat-icon>
+        Navigation
+      </button>
       <router-outlet></router-outlet>
+
     </mat-sidenav-content>
   </mat-sidenav-container>
 </ng-container>

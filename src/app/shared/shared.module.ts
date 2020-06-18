@@ -1,24 +1,26 @@
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {CommonModule} from '@angular/common';
-import {ConfirmationDialogComponent} from './components';
+import {ConfirmationDialogComponent, GeneralLayoutComponent} from './components';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 const LIBRARY_MODULES = [
   MatDialogModule,
   MatButtonModule,
+  MatGridListModule,
 ];
 
 const ENTRY_COMPONENTS = [ConfirmationDialogComponent];
-const COMPONENTS = [...ENTRY_COMPONENTS];
+const COMPONENTS = [...ENTRY_COMPONENTS, GeneralLayoutComponent,];
 
 @NgModule({
   imports: [
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    LIBRARY_MODULES,
+    ...LIBRARY_MODULES,
   ],
   declarations: [
     ...COMPONENTS
@@ -31,6 +33,7 @@ const COMPONENTS = [...ENTRY_COMPONENTS];
     ReactiveFormsModule,
     FormsModule,
     ...LIBRARY_MODULES,
+    ...COMPONENTS,
   ],
 })
 
