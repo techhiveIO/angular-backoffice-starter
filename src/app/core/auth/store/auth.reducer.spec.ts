@@ -6,7 +6,7 @@ import {MOCKED_AUTH_STATE} from '../../mocks/auth.mocks';
 describe('Auth Reducer', () => {
   const mockedEmptyAction: Action = {type: ''};
 
-  describe('on load', () => {
+  describe('on init', () => {
     it('should load the default empty state', () => {
       const loadedState = authReducer(undefined, mockedEmptyAction);
       expect(loadedState).toEqual(initialState);

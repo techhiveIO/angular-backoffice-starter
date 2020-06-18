@@ -6,5 +6,5 @@ export enum UserActionTypes {
 }
 
 export const actionStoreUsers = createAction(UserActionTypes.STORE_USERS,
-  props<{ users: User[] }>()
+  props<{ payload: { users: User[] } }>()
 );

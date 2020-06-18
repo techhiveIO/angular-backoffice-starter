@@ -12,7 +12,7 @@ export const initialState: UserStateInterface = {
 
 const reducer = createReducer(
   initialState,
-  on(actionStoreUsers, (state: UserStateInterface, action) => ({...state, ...action}))
+  on(actionStoreUsers, (state: UserStateInterface, action) => ({...state, ...action.payload}))
 );
 
 export function usersReducer(state: UserStateInterface | undefined, action: Action) {
