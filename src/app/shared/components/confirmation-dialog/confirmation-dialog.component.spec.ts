@@ -1,8 +1,8 @@
 import {ConfirmationDialogComponent} from './confirmation-dialog.component';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {MAT_DIALOG_DATA, MatDialogModule, MatDialogRef} from '@angular/material/dialog';
-import {MOCKED_CONFIRMATION_DIALOG_DATA} from '../../../core/mocks/confirmationDialog.mocks';
 import {DefaultConfirmationWindowMessage} from '../../models/confirmation-dialog.model';
+import {MOCKED_CONFIRMATION_DIALOG_DATA} from '../../mocks/confirmationDialog.mocks';
 
 describe('ConfirmationDialogComponent', () => {
   let fixture: ComponentFixture<ConfirmationDialogComponent>;
