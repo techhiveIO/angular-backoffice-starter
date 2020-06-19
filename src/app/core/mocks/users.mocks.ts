@@ -1,4 +1,4 @@
-import {UserApiInterface, UserRole} from '../models/user.model';
+import {User, UserApiInterface, UserRole} from '../models/user.model';
 
 export const MOCKED_API_USER: UserApiInterface = {
   _id: '123',
@@ -8,3 +8,5 @@ export const MOCKED_API_USER: UserApiInterface = {
   phoneNumber: '76 811 995',
   role: UserRole.Admin
 };
+
+export const MOCKED_USER: User = new User(MOCKED_API_USER);
