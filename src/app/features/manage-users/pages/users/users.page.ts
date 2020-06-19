@@ -1,10 +1,10 @@
 import {Component} from '@angular/core';
 import {UserFacadeService} from '../../services/user-facade.service';
 import {Observable, of} from 'rxjs';
-import {User} from '../../../../core/models/user.model';
-import {MOCKED_API_USER} from '../../../../core/mocks/users.mocks';
 import {MatDialog} from '@angular/material/dialog';
 import {ConfirmationDialogComponent} from '../../../../shared/components';
+import {User} from '../../../../shared/models/user.model';
+import {MOCKED_API_USER} from '../../../../shared/mocks/users.mocks';
 
 @Component({
   templateUrl: './users.page.html',

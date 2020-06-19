@@ -3,8 +3,8 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {environment} from '../../../../environments/environment';
-import {AuthStateApiInterface, AuthStateInterface} from '../../models/authState.model';
-import {User} from '../../models/user.model';
+import {AuthStateApiInterface, AuthStateInterface} from '../../../shared/models/authState.model';
+import {User} from '../../../shared/models/user.model';
 
 @Injectable()
 export class AuthApi {

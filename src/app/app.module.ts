@@ -10,6 +10,10 @@ import {ManageUsersModule} from './features/manage-users/manage-users.module';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {SharedModule} from './shared/shared.module';
 import {MatIconModule} from '@angular/material/icon';
+import {registerLocaleData} from '@angular/common';
+import localeLebanese from '@angular/common/locales/ar-LB';
+
+registerLocaleData(localeLebanese, 'ar-LB');
 
 const LIBRARY_MODULES = [
   MatSidenavModule,

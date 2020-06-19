@@ -1,6 +1,6 @@
-import {User} from '../../../core/models/user.model';
 import {Action, createReducer, on} from '@ngrx/store';
 import {actionStoreUsers} from './users.actions';
+import {User} from '../../../shared/models/user.model';
 
 export interface UserStateInterface {
   users: User[],

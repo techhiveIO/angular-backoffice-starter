@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
-import {NotificationLabelsInterface} from '../models/notifications.model';
+import {NotificationLabelsInterface} from '../../shared/models/notifications.model';
 
 export const NotificationsConfig: MatSnackBarConfig = {
   verticalPosition: 'top',

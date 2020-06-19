@@ -5,13 +5,13 @@ import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {NotificationsFacade} from '../../../core/services';
 import {MockStore, provideMockStore} from '@ngrx/store/testing';
 import {UserStateInterface} from '../store/users.reducer';
-import {MOCKED_API_USER, MOCKED_USER} from '../../../core/mocks/users.mocks';
-import {User} from '../../../core/models/user.model';
 import {actionStoreUsers} from '../store/users.actions';
 import {of, throwError} from 'rxjs';
 import {catchError, take} from 'rxjs/operators';
 import {MemoizedSelector} from '@ngrx/store';
 import {selectAllUsers} from '../store/users.selector';
+import {User} from '../../../shared/models/user.model';
+import {MOCKED_API_USER, MOCKED_USER} from '../../../shared/mocks/users.mocks';
 
 describe('UsersFacadeService', () => {
   const mockedUsersArray: User[] = [new User(MOCKED_API_USER)];

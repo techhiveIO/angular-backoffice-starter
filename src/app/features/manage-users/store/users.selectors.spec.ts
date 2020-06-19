@@ -1,7 +1,7 @@
-import {User} from '../../../core/models/user.model';
-import {MOCKED_API_USER} from '../../../core/mocks/users.mocks';
 import {selectAllUsers} from './users.selector';
 import {initialState} from './users.reducer';
+import {User} from '../../../shared/models/user.model';
+import {MOCKED_API_USER} from '../../../shared/mocks/users.mocks';
 
 describe('UsersSelectors', () => {
   describe('selectAllUsers', () => {

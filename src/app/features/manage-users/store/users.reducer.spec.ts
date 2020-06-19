@@ -1,8 +1,8 @@
 import {Action} from '@ngrx/store';
 import {initialState, usersReducer} from './users.reducer';
 import {actionStoreUsers} from './users.actions';
-import {User} from '../../../core/models/user.model';
-import {MOCKED_API_USER} from '../../../core/mocks/users.mocks';
+import {User} from '../../../shared/models/user.model';
+import {MOCKED_API_USER} from '../../../shared/mocks/users.mocks';
 
 describe('UsersReducer', () => {
   const mockedEmptyAction: Action = {type: ''};

@@ -1,10 +1,8 @@
 import {NotificationsConfig, NotificationsErrorLabels, NotificationsFacade, NotificationsSuccessLabels} from './notifications.service';
 import {async, TestBed} from '@angular/core/testing';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {
-  MOCKED_SNACKBAR_CONFIG,
-  MOCKED_NOTIFICATION_LABELS
-} from '../mocks/notifications.mocks';
+import {MOCKED_NOTIFICATION_LABELS, MOCKED_SNACKBAR_CONFIG} from '../../shared/mocks/notifications.mocks';
+
 
 describe('Notifications Facade', () => {
   let service: NotificationsFacade;

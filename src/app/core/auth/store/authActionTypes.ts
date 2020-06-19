@@ -1,5 +1,5 @@
 import {createAction, props} from '@ngrx/store';
-import {AuthStateInterface} from '../../models/authState.model';
+import {AuthStateInterface} from '../../../shared/models/authState.model';
 
 export enum AuthActionTypes {
   LOGIN = '[Auth] LOGIN',

@@ -4,12 +4,12 @@ import {HttpClientTestingModule} from '@angular/common/http/testing';
 import {of} from 'rxjs';
 import {MockStore, provideMockStore} from '@ngrx/store/testing';
 import {MemoizedSelector} from '@ngrx/store';
-import {AuthStateInterface} from '../../models/authState.model';
 import {selectIsAuthenticated} from '../store/auth.selectors';
-import {User} from '../../models/user.model';
 import {actionLogin} from '../store/authActionTypes';
-import {MOCKED_AUTH_STATE} from '../../mocks/auth.mocks';
 import {AuthApi} from './auth-api.service';
+import {AuthStateInterface} from '../../../shared/models/authState.model';
+import {User} from '../../../shared/models/user.model';
+import {MOCKED_AUTH_STATE} from '../../../shared/mocks/auth.mocks';
 
 describe('Auth Facade Service', () => {
   const mockedInitialAuthState: AuthStateInterface = {

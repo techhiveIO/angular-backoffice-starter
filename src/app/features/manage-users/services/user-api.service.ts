@@ -2,8 +2,8 @@ import {Injectable} from '@angular/core';
 import {environment} from '../../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {User, UserApiInterface} from '../../../core/models/user.model';
 import {map} from 'rxjs/operators';
+import {User, UserApiInterface} from '../../../shared/models/user.model';
 
 @Injectable()
 export class UserApiService {

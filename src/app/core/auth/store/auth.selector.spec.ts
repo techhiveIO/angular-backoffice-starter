@@ -1,6 +1,6 @@
 import {selectIsAuthenticated} from './auth.selectors';
-import {MOCKED_AUTH_STATE} from '../../mocks/auth.mocks';
 import {initialState} from './auth.reducer';
+import {MOCKED_AUTH_STATE} from '../../../shared/mocks/auth.mocks';
 
 describe('AuthSelectors', () => {
   describe('selectIsAuthenticated', () => {

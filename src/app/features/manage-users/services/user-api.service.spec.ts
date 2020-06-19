@@ -3,8 +3,8 @@ import {HttpClientTestingModule, HttpTestingController, TestRequest} from '@angu
 import {async, TestBed} from '@angular/core/testing';
 import {take} from 'rxjs/operators';
 import {environment} from '../../../../environments/environment';
-import {UserApiInterface} from '../../../core/models/user.model';
-import {MOCKED_API_USER} from '../../../core/mocks/users.mocks';
+import {UserApiInterface} from '../../../shared/models/user.model';
+import {MOCKED_API_USER} from '../../../shared/mocks/users.mocks';
 
 describe('UsersApiService', () => {
   let service: UserApiService;

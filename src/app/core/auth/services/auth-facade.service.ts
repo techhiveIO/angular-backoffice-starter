@@ -3,10 +3,10 @@ import {select, Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {map, tap} from 'rxjs/operators';
 import {selectIsAuthenticated} from '../store/auth.selectors';
-import {AuthStateInterface} from '../../models/authState.model';
-import {User} from '../../models/user.model';
 import {actionLogin} from '../store/authActionTypes';
 import {AuthApi} from './auth-api.service';
+import {AuthStateInterface} from '../../../shared/models/authState.model';
+import {User} from '../../../shared/models/user.model';
 
 @Injectable()
 export class AuthFacade {
