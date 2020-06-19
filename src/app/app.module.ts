@@ -13,13 +13,14 @@ import {MatIconModule} from '@angular/material/icon';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {HttpClient} from '@angular/common/http';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {MatMenuModule} from '@angular/material/menu';
 
 const LIBRARY_MODULES = [
   MatSidenavModule,
   MatIconModule,
+  MatMenuModule,
 ];
 
-// AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }

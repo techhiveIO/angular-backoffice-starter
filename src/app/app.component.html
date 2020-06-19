@@ -1,5 +1,5 @@
 <ng-container>
-  <mat-sidenav-container>
+  <mat-sidenav-container [dir]="direction">
     <mat-sidenav
       *ngIf="loadMembersLayout"
       [opened]="drawerOpened"
@@ -9,18 +9,35 @@
     </mat-sidenav>
     <mat-sidenav-content>
 
-      <button
+      <div
+        class="app__controls"
         *ngIf="loadMembersLayout"
-        class="drawer-toggle"
-        mat-button
-        color="primary"
-        (click)="toggleDrawer()"
       >
-        <mat-icon>{{drawerOpened ? 'menu' : 'menu_open'}}</mat-icon>
-        Navigation
-      </button>
+        <button
+          class="drawer-toggle"
+          mat-button
+          color="primary"
+          (click)="toggleDrawer()"
+        >
+          <mat-icon>{{drawerOpened ? 'menu' : 'menu_open'}}</mat-icon>
+          Navigation
+        </button>
+
+        <button mat-button color="primary" [matMenuTriggerFor]="menu">{{currentLanguage$ | async | translate}}</button>
+      </div>
+
       <router-outlet></router-outlet>
 
     </mat-sidenav-content>
   </mat-sidenav-container>
 </ng-container>
+
+<mat-menu #menu="matMenu">
+  <button
+    mat-menu-item
+    *ngFor="let loc of availableLocales"
+    (click)="changeLanguage(loc)"
+  >
+    {{"TRANSLATION." + loc.toUpperCase() | translate}}
+  </button>
+</mat-menu>
