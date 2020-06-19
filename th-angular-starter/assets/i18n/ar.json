@@ -1,4 +1,8 @@
 {
+  "TRANSLATION": {
+    "EN": "الإنجليزية",
+    "AR": "العربية"
+  },
   "AUTH": {
     "GREETING": "هلا و الله،",
     "SIGN_IN_HEADING": "سجل دخولك عند <span class='highlight'>تِيك هايف أي أو</span>"

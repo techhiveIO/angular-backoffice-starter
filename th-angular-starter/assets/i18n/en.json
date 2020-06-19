@@ -1,4 +1,8 @@
 {
+  "TRANSLATION": {
+    "EN": "English",
+    "AR": "Arabic"
+  },
   "AUTH": {
     "GREETING": "Hello,",
     "SIGN_IN_HEADING": "Sign in to <span class='highlight'>TechHive.IO</span>"
