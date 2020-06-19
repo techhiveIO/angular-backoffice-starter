@@ -1,8 +1,8 @@
 <div class="auth-content">
   <img src="assets/brand/logo.svg" class="brand-logo"/>
   <form [formGroup]="formGroup">
-    <h2 class="auth-subheader">Hello,</h2>
-    <h1 class="auth-header">Sign in to TechHive.IO</h1>
+    <h2 class="auth-subheader">{{'AUTH.GREETING' | translate}}</h2>
+    <h1 class="auth-header" [innerHTML]="'AUTH.SIGN_IN_HEADING' | translate"></h1>
     <mat-form-field>
       <mat-label>Email</mat-label>
       <input matInput formControlName="email" type="text" placeholder="Email"/>

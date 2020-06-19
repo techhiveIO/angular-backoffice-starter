@@ -10,7 +10,9 @@ export class AppComponent implements OnInit {
   loadMembersLayout = true;
   drawerOpened = false;
 
-  constructor(private readonly router: Router) {
+  constructor(
+    private readonly router: Router,
+  ) {
   }
 
   ngOnInit(): void {

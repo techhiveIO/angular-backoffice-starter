@@ -5,6 +5,7 @@ import {ConfirmationDialogComponent, GeneralLayoutComponent} from './components'
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {TranslateModule} from '@ngx-translate/core';
 
 const LIBRARY_MODULES = [
   MatDialogModule,
@@ -20,6 +21,7 @@ const COMPONENTS = [...ENTRY_COMPONENTS, GeneralLayoutComponent,];
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
+    TranslateModule,
     ...LIBRARY_MODULES,
   ],
   declarations: [
@@ -32,6 +34,7 @@ const COMPONENTS = [...ENTRY_COMPONENTS, GeneralLayoutComponent,];
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
+    TranslateModule,
     ...LIBRARY_MODULES,
     ...COMPONENTS,
   ],
