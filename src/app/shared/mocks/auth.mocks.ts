@@ -4,7 +4,7 @@ import {User, UserRole} from '../models/user.model';
 export const MOCKED_AUTH_API_STATE: AuthStateApiInterface = {
   token: 'mockedToken',
   user: {
-    _id: '123',
+    id: '123',
     firstName: 'Ali',
     lastName: 'Obaji',
     email: 'ali@techhive.io',
@@ -16,7 +16,7 @@ export const MOCKED_AUTH_API_STATE: AuthStateApiInterface = {
 export const MOCKED_AUTH_STATE: AuthStateInterface = {
   token: 'mockedToken',
   user: new User({
-    _id: '123',
+    id: '123',
     firstName: 'Ali',
     lastName: 'Obaji',
     email: 'ali@techhive.io',

@@ -4,7 +4,7 @@ export enum UserRole {
 }
 
 export interface UserApiInterface {
-  _id: string;
+  id: string;
   firstName: string;
   lastName: string;
   email: string;
@@ -30,7 +30,7 @@ export class User implements UserInterface {
   role: UserRole;
 
   constructor(user: UserApiInterface) {
-    this.id = user._id;
+    this.id = user.id;
     this.firstName = user.firstName;
     this.lastName = user.lastName;
     this.email = user.email;
