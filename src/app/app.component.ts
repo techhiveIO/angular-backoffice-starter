@@ -26,7 +26,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.router.events.subscribe((e: RouterEvent) => {
-      console.log('weferg', e);
       if (e instanceof NavigationStart) {
 
         this.loadMembersLayout = !e.url.includes('/auth');

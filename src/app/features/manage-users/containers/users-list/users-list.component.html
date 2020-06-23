@@ -6,13 +6,13 @@
     <!--    First Name Column-->
     <ng-container matColumnDef="firstName">
       <th mat-header-cell *matHeaderCellDef mat-sort-header="">First Name</th>
-      <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.firstName | titlecase}} </td>
     </ng-container>
 
     <!--    Last Name Column-->
     <ng-container matColumnDef="lastName">
       <th mat-header-cell *matHeaderCellDef mat-sort-header="">Last Name</th>
-      <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.lastName | titlecase}} </td>
     </ng-container>
 
     <!--    Email Column-->

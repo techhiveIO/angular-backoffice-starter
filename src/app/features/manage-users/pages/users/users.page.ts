@@ -4,7 +4,6 @@ import {Observable, of} from 'rxjs';
 import {MatDialog} from '@angular/material/dialog';
 import {ConfirmationDialogComponent} from '../../../../shared/components';
 import {User} from '../../../../shared/models/user.model';
-import {MOCKED_API_USER} from '../../../../shared/mocks/users.mocks';
 
 @Component({
   templateUrl: './users.page.html',
@@ -17,7 +16,6 @@ export class UsersPageComponent {
 
   constructor(private readonly usersFacade: UserFacadeService, public dialog: MatDialog) {
     this.allUsers$ = this.usersFacade.getAll();
-    this.allUsers$ = of([new User(MOCKED_API_USER)]);
     this.usersFacade.loadAllUsers();
   }
 

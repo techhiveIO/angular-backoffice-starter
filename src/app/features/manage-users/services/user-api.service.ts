@@ -16,8 +16,6 @@ export class UserApiService {
     return this.http
       .get(this.API_USERS)
       .pipe(
-        map((res: any) => res.data),
-        map(data => data.users),
         map((users: UserApiInterface[]) => {
           return users.map((user: UserApiInterface) => new User(user));
         }),
