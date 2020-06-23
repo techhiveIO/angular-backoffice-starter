@@ -2,6 +2,7 @@ import {LoginPageComponent} from './login.page';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {BrowserTestingModule} from '@angular/platform-browser/testing';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {TranslateModule} from '@ngx-translate/core';
 
 describe('LoginPage', () => {
   let fixture: ComponentFixture<LoginPageComponent>;
@@ -20,7 +21,8 @@ describe('LoginPage', () => {
 
     TestBed.configureTestingModule({
       imports: [
-        BrowserTestingModule
+        BrowserTestingModule,
+        TranslateModule.forRoot(),
       ],
       declarations: [LoginPageComponent],
       providers: [
