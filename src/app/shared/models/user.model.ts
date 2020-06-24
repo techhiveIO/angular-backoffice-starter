@@ -9,6 +9,7 @@ export interface UserApiInterface {
   last_name: string;
   email: string;
   phoneNumber: string;
+  password: string;
   role: UserRole;
 }
 

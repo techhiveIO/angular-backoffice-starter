@@ -12,6 +12,7 @@
 
   <app-users-list
     [users]="allUsers$"
+    [isLoading]="isLoading"
     (deleteUser)="onDeleteUser($event)"
     (editUser)="onEditUserInfo($event)"
   ></app-users-list>

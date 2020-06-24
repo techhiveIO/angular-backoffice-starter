@@ -7,7 +7,7 @@ import {selectAllUsers} from '../store/users.selector';
 import {catchError, take, tap} from 'rxjs/operators';
 import {NotificationsFacade} from '../../../core/services';
 import {actionStoreUsers} from '../store/users.actions';
-import {User} from '../../../shared/models/user.model';
+import {User, UserApiInterface} from '../../../shared/models/user.model';
 
 @Injectable()
 export class UserFacadeService {
@@ -29,8 +29,21 @@ export class UserFacadeService {
       .subscribe();
   }
 
-  public updateUser(userID: string, userFields: Partial<Omit<User, 'id'>>): Observable<any> {
+  public createUser(firstName, lastName, email, password, role): Observable<any> {
+    return this.userApi
+      .addUser({first_name: firstName, last_name: lastName, email, password, role})
+      .pipe(
+        tap(() => this.loadAllUsers()),
+        catchError(
+          err => {
+            this.notificationsFacade.displayErrorMessage();
+            return throwError(err);
+          },
+        ),
+      );
+  };
 
+  public updateUser(userID: string, userFields: Partial<Omit<UserApiInterface, 'id'>>): Observable<any> {
     return this.userApi
       .editUser(userID, userFields)
       .pipe(
@@ -40,7 +53,7 @@ export class UserFacadeService {
             this.notificationsFacade.displayErrorMessage();
             return throwError(err);
           },
-        )
+        ),
       );
   }
 

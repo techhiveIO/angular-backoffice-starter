@@ -43,8 +43,6 @@ export class UserApiService {
   }
 
   public deleteUser(userID: string): Observable<any> {
-    const params = {id: userID};
-
-    return this.http.delete(this.API_USERS, {params});
+    return this.http.delete(`${this.API_USERS}/${userID}`);
   }
 }

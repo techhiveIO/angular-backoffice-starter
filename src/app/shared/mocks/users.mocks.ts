@@ -6,7 +6,8 @@ export const MOCKED_API_USER: UserApiInterface = {
   last_name: 'Zantout',
   email: 'abed@techhive.io',
   phoneNumber: '76 811 995',
-  role: UserRole.Admin
+  role: UserRole.Admin,
+  password: 'password',
 };
 
 export const MOCKED_USER: User = new User(MOCKED_API_USER);
