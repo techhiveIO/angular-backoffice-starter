@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AuthFacade} from '../../../../core/auth/services';
 
 @Component({
   templateUrl: './sign-up.page.html',
@@ -13,7 +14,8 @@ export class SignupPageComponent implements OnInit {
   hidden = true;
 
   constructor(
-    private readonly formBuilder: FormBuilder
+    private readonly formBuilder: FormBuilder,
+    private readonly authFacade: AuthFacade
   ) {
   }
 
@@ -32,5 +34,12 @@ export class SignupPageComponent implements OnInit {
 
   onSubmit() {
     this.isLoading = true;
+    const data = this.formGroup.getRawValue();
+
+    this.authFacade.register(data.firstName, data.lastName, data.email, data.password)
+      .subscribe((res) => {
+          console.log('fefe', res);
+        }
+      );
   }
 }

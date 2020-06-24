@@ -10,6 +10,7 @@ import {AuthApi} from './auth-api.service';
 import {AuthStateInterface} from '../../../shared/models/authState.model';
 import {User} from '../../../shared/models/user.model';
 import {MOCKED_AUTH_STATE} from '../../../shared/mocks/auth.mocks';
+import {NotificationsFacade} from '../../services';
 
 describe('Auth Facade Service', () => {
   const mockedInitialAuthState: AuthStateInterface = {
@@ -21,10 +22,12 @@ describe('Auth Facade Service', () => {
   let mockedAuthApi: jasmine.SpyObj<AuthApi>;
   let store: MockStore;
   let mockedIsAuthenticatedSelector: MemoizedSelector<AuthStateInterface, boolean>;
+  let mockedNotificationsFacade: jasmine.SpyObj<NotificationsFacade>;
 
   const configureTestingModule: (userIsAuthenticated: boolean) => void = (userIsAuthenticated) => {
     mockedAuthApi = jasmine.createSpyObj('AuthApi', ['login']);
     mockedAuthApi.login.and.returnValue(of(MOCKED_AUTH_STATE));
+    mockedNotificationsFacade = jasmine.createSpyObj(NotificationsFacade, ['displayErrorMessage']);
 
     TestBed.configureTestingModule({
       imports: [
@@ -35,7 +38,8 @@ describe('Auth Facade Service', () => {
         provideMockStore({initialState: mockedInitialAuthState}),
         {
           provide: AuthApi, useValue: mockedAuthApi,
-        }
+        },
+        {provide: NotificationsFacade, useValue: mockedNotificationsFacade},
       ],
     });
 

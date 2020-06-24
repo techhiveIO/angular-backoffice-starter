@@ -3,11 +3,13 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {BrowserTestingModule} from '@angular/platform-browser/testing';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {TranslateModule} from '@ngx-translate/core';
+import {AuthFacade} from '../../../../core/auth/services';
 
 describe('LoginPage', () => {
   let fixture: ComponentFixture<LoginPageComponent>;
   let component: LoginPageComponent;
   let mockedFormBuilder: jasmine.SpyObj<FormBuilder>;
+  let mockedAuthFacade: jasmine.SpyObj<AuthFacade>;
 
   const mockedFormGroup: FormGroup = new FormBuilder().group({
     email: ['', [Validators.required, Validators.email]],
@@ -18,6 +20,7 @@ describe('LoginPage', () => {
   const configureTestingModule: () => void = () => {
     mockedFormBuilder = jasmine.createSpyObj('FormBuilder', ['group']);
     mockedFormBuilder.group.and.returnValue(mockedFormGroup);
+    mockedAuthFacade = jasmine.createSpyObj('AuthFacade', ['attemptLogin']);
 
     TestBed.configureTestingModule({
       imports: [
@@ -27,6 +30,7 @@ describe('LoginPage', () => {
       declarations: [LoginPageComponent],
       providers: [
         {provide: FormBuilder, useValue: mockedFormBuilder},
+        {provide: AuthFacade, useValue: mockedAuthFacade},
       ],
     }).compileComponents();
   };
@@ -64,11 +68,6 @@ describe('LoginPage', () => {
 
     beforeEach(() => {
       initializeTestComponent();
-    });
-
-    it('should set the loading flag', () => {
-      component.onSubmit();
-      expect(component.isLoading).toBe(true);
     });
   });
 });

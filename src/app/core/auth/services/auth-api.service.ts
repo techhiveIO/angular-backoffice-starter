@@ -8,7 +8,8 @@ import {User} from '../../../shared/models/user.model';
 
 @Injectable()
 export class AuthApi {
-  private readonly API_LOGIN = `${environment.API}/login`;
+  private readonly API_LOGIN = `${environment.API}/auth/login`;
+  private readonly API_REGISTER = `${environment.API}/auth/register`;
 
   constructor(private http: HttpClient) {
   }
@@ -27,5 +28,16 @@ export class AuthApi {
           user: new User(authState.user),
         })),
       );
+  }
+
+  public register(firstName: string, lastName: string, email: string, password: string): Observable<any> {
+    const body = {
+      first_name: firstName,
+      last_name: lastName,
+      email,
+      password,
+    };
+
+    return this.http.post(this.API_REGISTER, body);
   }
 }

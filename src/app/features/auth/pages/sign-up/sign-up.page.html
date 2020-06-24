@@ -1,6 +1,6 @@
 <div class="auth-content">
   <img src="assets/brand/logo.svg" class="brand-logo"/>
-  <form [formGroup]="formGroup">
+  <form [formGroup]="formGroup" (submit)="onSubmit()">
     <h1 class="auth-header">Register a new account.</h1>
 
     <mat-form-field>
