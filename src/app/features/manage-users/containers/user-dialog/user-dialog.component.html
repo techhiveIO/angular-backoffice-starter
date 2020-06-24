@@ -1,35 +1,35 @@
-<h2 mat-dialog-title>Create a new user</h2>
+<h2 mat-dialog-title>{{"USERS.CREATE_NEW" | translate}}</h2>
 <mat-dialog-content>
   <form [formGroup]="formGroup">
     <mat-form-field>
-      <mat-label>First Name</mat-label>
-      <input matInput type="text" formControlName="firstName" placeholder="First Name"/>
+      <mat-label>{{"LABELS.FIRST_NAME" | translate}}</mat-label>
+      <input matInput type="text" formControlName="firstName" placeholder='{{"LABELS.FIRST_NAME" | translate}}'/>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Last Name</mat-label>
-      <input matInput type="text" formControlName="lastName" placeholder="Last Name"/>
+      <mat-label>{{"LABELS.LAST_NAME" | translate}}</mat-label>
+      <input matInput type="text" formControlName="lastName" placeholder='{{"LABELS.LAST_NAME" | translate}}'/>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Email Address</mat-label>
-      <input matInput type="email" formControlName="email" placeholder="Email"/>
+      <mat-label>{{"LABELS.EMAIL" | translate}}</mat-label>
+      <input matInput type="email" formControlName="email" placeholder='{{"LABELS.EMAIL" | translate}}'/>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Phone Number</mat-label>
-      <input matInput type="text" formControlName="phoneNumber" placeholder="Phone Number"/>
+      <mat-label>{{"LABELS.PHONE" | translate}}</mat-label>
+      <input matInput type="text" formControlName="phoneNumber" placeholder='{{"LABELS.PHONE" | translate}}'/>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>User Role</mat-label>
+      <mat-label>{{"LABELS.ROLE" | translate}}</mat-label>
       <mat-select formControlName="role">
         <mat-option *ngFor="let option of availableRoles" [value]="option">{{option | titlecase}}</mat-option>
       </mat-select>
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Password</mat-label>
+      <mat-label>{{"LABELS.PASSWORD" | translate}}</mat-label>
       <input matInput type="password" formControlName="password" placeholder="********"/>
       <button
         type="button"
@@ -38,7 +38,7 @@
         mat-icon-button
         aria-label="Clear"
         (click)="getPassword()"
-        matTooltip="Auto Generate Password"
+        matTooltip='{{"LABELS.AUTO_GENERATE_PASSWORD" | translate}}'
       >
         <mat-icon>autorenew</mat-icon>
       </button>
@@ -51,7 +51,7 @@
         type="button"
         (click)="dialogRef.close()"
       >
-        Cancel
+        {{"LABELS.CANCEL" | translate}}
       </button>
       <button
         mat-raised-button
@@ -60,7 +60,7 @@
         (click)="onConfirm()"
         [disabled]="!formGroup.valid"
       >
-        Save
+        {{"LABELS.CONFIRM" | translate}}
       </button>
     </div>
   </form>

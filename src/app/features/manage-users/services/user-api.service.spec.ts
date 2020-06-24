@@ -76,10 +76,8 @@ describe('UsersApiService', () => {
 
       const getUsersRequest: TestRequest = httpMock.expectOne({
         method: 'DELETE',
-        url: `${environment.API}/users?id=${mockedUserId}`,
+        url: `${environment.API}/users/${mockedUserId}`,
       });
-
-      expect(getUsersRequest.request.params.get('id')).toEqual(mockedUserId);
 
       getUsersRequest.flush({data: {users: []}});
     });
@@ -88,8 +86,8 @@ describe('UsersApiService', () => {
   describe('addUser', () => {
     it('should make a delete request to the correct end point', () => {
       const mockedUserData: Partial<UserApiInterface> = {
-        firstName: 'Ali',
-        lastName: 'Obaji',
+        first_name: 'Ali',
+        last_name: 'Obaji',
       };
 
       service.addUser(mockedUserData)
@@ -111,8 +109,8 @@ describe('UsersApiService', () => {
     it('should make a patch request to the correct end point', () => {
       const mockedUserId = '123';
       const mockedUserData: Partial<UserApiInterface> = {
-        firstName: 'Ali',
-        lastName: 'Obaji',
+        first_name: 'Ali',
+        last_name: 'Obaji',
       };
 
       service.editUser(mockedUserId, mockedUserData)
