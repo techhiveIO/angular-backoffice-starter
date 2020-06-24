@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {UsersListComponent} from './containers';
+import {UserDialogComponent, UsersListComponent} from './containers';
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
@@ -11,11 +11,17 @@ import {UserFacadeService} from './services/user-facade.service';
 import {HttpClientModule} from '@angular/common/http';
 import {SharedModule} from '../../shared/shared.module';
 import {UsersPageComponent} from './pages';
-import {MatIconModule} from '@angular/material/icon';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+
+const ENTRY_COMPONENTS = [
+  UserDialogComponent,
+];
 
 const COMPONENTS = [
   UsersListComponent,
   UsersPageComponent,
+  ...ENTRY_COMPONENTS,
 ];
 
 const SERVICES = [
@@ -28,7 +34,6 @@ const LIBRARY_MODULES = [
   MatSortModule,
   MatPaginatorModule,
   MatProgressBarModule,
-  MatIconModule,
 ];
 
 @NgModule({
@@ -37,6 +42,8 @@ const LIBRARY_MODULES = [
     HttpClientModule,
     StoreModule.forFeature('users', usersReducer),
     ...LIBRARY_MODULES,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   declarations: [
     ...COMPONENTS,

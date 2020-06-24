@@ -4,6 +4,12 @@
     This is a list of all the users with access to your organization's back-office system.
     Anyone with admin access may add and remove users, or edit the information of any current user.
   </p>
+
+  <button mat-raised-button color="primary" (click)="onCreateUser()">
+    <mat-icon>add</mat-icon>
+    Create New
+  </button>
+
   <app-users-list
     [users]="allUsers$"
     (deleteUser)="onDeleteUser($event)"

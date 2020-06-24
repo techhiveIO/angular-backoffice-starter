@@ -1,9 +1,11 @@
 import {Component} from '@angular/core';
 import {UserFacadeService} from '../../services/user-facade.service';
-import {Observable, of} from 'rxjs';
+import {Observable} from 'rxjs';
 import {MatDialog} from '@angular/material/dialog';
 import {ConfirmationDialogComponent} from '../../../../shared/components';
 import {User} from '../../../../shared/models/user.model';
+import {UserDialogComponent} from '../../containers';
+import {MOCKED_USER} from '../../../../shared/mocks/users.mocks';
 
 @Component({
   templateUrl: './users.page.html',
@@ -22,6 +24,17 @@ export class UsersPageComponent {
   onDeleteUser(user: User): void {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '400px',
+    });
+  }
+
+  onCreateUser(): void {
+    const dialogRef = this.dialog.open(UserDialogComponent, {
+      width: '600px',
+      data: MOCKED_USER,
+    });
+
+    dialogRef.afterClosed().subscribe(res => {
+      console.log('wefoew', res);
     });
   }
 
