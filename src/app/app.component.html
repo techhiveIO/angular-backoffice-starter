@@ -10,7 +10,7 @@
         <a
           mat-list-item
           *ngFor="let link of navigationLinks"
-          [href]="link.path"
+          [routerLink]="link.path"
         >
           {{link.label}}
         </a>
