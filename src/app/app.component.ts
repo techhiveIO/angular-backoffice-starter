@@ -4,6 +4,8 @@ import {TranslateService} from '@ngx-translate/core';
 import {Observable} from 'rxjs';
 import {map, startWith, tap} from 'rxjs/operators';
 import {AVAILABLE_LANGUAGES} from './shared/consts/translation.consts';
+import {NavigationLinkInterface} from './shared/models/navigation-link.model';
+import {NavigationMenuLinks} from './shared/consts/navigation-links.consts';
 
 @Component({
   selector: 'app-root',
@@ -17,6 +19,7 @@ export class AppComponent implements OnInit {
   availableLocales = AVAILABLE_LANGUAGES;
   direction: 'rtl' | 'ltr' = 'ltr';
   currentLanguage$: Observable<string>;
+  navigationLinks: NavigationLinkInterface[] = NavigationMenuLinks;
 
   constructor(
     private readonly router: Router,

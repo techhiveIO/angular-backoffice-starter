@@ -6,6 +6,15 @@
       mode="side"
       [fixedInViewport]="true">
       <img src="assets/brand/logo.svg" class="brand-logo"/>
+      <mat-nav-list>
+        <a
+          mat-list-item
+          *ngFor="let link of navigationLinks"
+          [href]="link.path"
+        >
+          {{link.label}}
+        </a>
+      </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
 
