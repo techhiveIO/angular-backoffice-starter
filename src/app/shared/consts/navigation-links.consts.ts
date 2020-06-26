@@ -3,11 +3,11 @@ import {ROUTES_GENERAL} from '../../app-routing.module';
 
 export const NavigationMenuLinks: NavigationLinkInterface[] = [
   {
-    label: 'Dashboard',
+    label: 'LABELS.DASHBOARD',
     path: ROUTES_GENERAL.DASHBOARD,
   },
   {
-    label: 'Users',
+    label: 'LABELS.USERS',
     path: ROUTES_GENERAL.USERS,
   },
 ];

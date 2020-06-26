@@ -1,5 +1,7 @@
 {
   "LABELS": {
+    "DASHBOARD": "Dashboard",
+    "USERS": "Users Management",
     "NAVIGATION": "Navigation",
     "FIRST_NAME": "First Name",
     "LAST_NAME": "Last Name",

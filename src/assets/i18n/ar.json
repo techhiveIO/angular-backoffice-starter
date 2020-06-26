@@ -1,5 +1,7 @@
 {
   "LABELS": {
+    "DASHBOARD": "لوحة القيادة",
+    "USERS":  "إدارة المستخدمين",
     "NAVIGATION": "ملاحة المنصة",
     "FIRST_NAME": "الإسم الأول",
     "LAST_NAME": "إسم العائلة",
@@ -20,8 +22,8 @@
     "SIGN_IN_HEADING": "سجل دخولك عند <span class='highlight'>تِيك هايف أي أو</span>"
   },
   "USERS": {
-    "HEADING": "الموظفين",
-    "DESCRIPTION": "لائحة بكل عاملين المنصة.",
+    "HEADING": "المستخدمين",
+    "DESCRIPTION": "لائحة بكل مستخدمين المنصة.",
     "CREATE_NEW": "أدخل عامل جديد"
   }
 }
