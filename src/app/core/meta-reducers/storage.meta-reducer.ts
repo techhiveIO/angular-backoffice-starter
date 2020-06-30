@@ -1,8 +1,9 @@
+// Source: https://medium.com/better-programming/sync-your-state-in-local-storage-with-ngrx-9d6ceba93fc0
 // The fields from the state which we'd like to save
 import {Action, ActionReducer} from '@ngrx/store';
-import {LocalStorageFacade, localStorageKey} from '../services';
+import {LocalStorageFacade} from '../services';
 
-const stateKeys = ['settings.language', 'settings.direction'];
+const stateKeys = ['settings', 'auth'];
 
 const getKeysFromState = (state: any, keysToRetrieve: string[]): any => {
   const newObj = {};
@@ -10,6 +11,8 @@ const getKeysFromState = (state: any, keysToRetrieve: string[]): any => {
   keysToRetrieve.forEach((key: string) => {
     newObj[key] = state[key];
   });
+
+  return newObj;
 };
 
 export function storageMetaReducer<S, A extends Action = Action>(reducer: ActionReducer<S, A>) {
@@ -25,7 +28,8 @@ export function storageMetaReducer<S, A extends Action = Action>(reducer: Action
       return {...nextState, ...savedState};
     }
 
-    LocalStorageFacade.setSavedState(nextState);
+    const stateToSave = getKeysFromState(nextState, stateKeys);
+    LocalStorageFacade.setSavedState(stateToSave);
     return nextState;
   };
 }

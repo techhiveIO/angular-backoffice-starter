@@ -43,7 +43,7 @@ describe('UsersApiService', () => {
         url: `${environment.API}/users`,
       });
 
-      getUsersRequest.flush({data: {users: []}});
+      getUsersRequest.flush([]);
     });
   });
 
