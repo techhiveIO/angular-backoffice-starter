@@ -15,6 +15,10 @@
           {{link.label | translate}}
         </a>
       </mat-nav-list>
+      <button mat-button [matMenuTriggerFor]="userMenu" class="user-menu-button">User</button>
+      <mat-menu #userMenu>
+        <button mat-menu-item (click)="logOutUser()">Log out</button>
+      </mat-menu>
     </mat-sidenav>
     <mat-sidenav-content>
 

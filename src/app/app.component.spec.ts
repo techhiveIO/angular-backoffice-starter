@@ -6,6 +6,7 @@ import {TranslateModule, TranslateService} from '@ngx-translate/core';
 import {EventEmitter} from '@angular/core';
 import {AVAILABLE_LANGUAGES, READ_DIRECTIONS} from './shared/models/settingsState.model';
 import {SettingsFacade} from './core/settings/services';
+import {AuthFacade} from './core/auth/services';
 
 describe('AppComponent', () => {
   const onLangChangeSubject: Subject<{ lang: string }> = new Subject<{ lang: string }>();
@@ -16,6 +17,7 @@ describe('AppComponent', () => {
   let mockedTranslateService: jasmine.SpyObj<TranslateService>;
   let mockedRouter: Partial<Router>;
   let mockedSettingsFacade: jasmine.SpyObj<SettingsFacade>;
+  let mockedAuthFacade: jasmine.SpyObj<AuthFacade>;
 
   const configureTestingModule: () => void = () => {
     mockedTranslateService = {
@@ -32,6 +34,7 @@ describe('AppComponent', () => {
     );
     mockedSettingsFacade.getCurrentLanguage.and.returnValue(of(AVAILABLE_LANGUAGES.en));
     mockedSettingsFacade.getCurrentReadDirection.and.returnValue(of(READ_DIRECTIONS.LTR));
+    mockedAuthFacade = jasmine.createSpyObj(AuthFacade, ['signOut']);
 
     mockedRouter = {
       events: routerEventsSubject.asObservable(),
@@ -46,6 +49,7 @@ describe('AppComponent', () => {
         {provide: Router, useValue: mockedRouter},
         {provide: TranslateService, useValue: mockedTranslateService},
         {provide: SettingsFacade, useValue: mockedSettingsFacade},
+        {provide: AuthFacade, useValue: mockedAuthFacade},
       ],
     }).compileComponents();
   };
@@ -122,6 +126,21 @@ describe('AppComponent', () => {
 
       expect(mockedSettingsFacade.setLanguage).toHaveBeenCalledTimes(1);
       expect(mockedSettingsFacade.setLanguage).toHaveBeenCalledWith(mockedNewLanguage);
+    });
+  });
+
+  describe('logOutUser', () => {
+    beforeEach(async(() => {
+      configureTestingModule();
+    }));
+
+    beforeEach(() => {
+      initializeTestComponent();
+    });
+
+    it('should call the logout function', () => {
+      component.logOutUser();
+      expect(mockedAuthFacade.signOut).toHaveBeenCalledTimes(1);
     });
   });
 });

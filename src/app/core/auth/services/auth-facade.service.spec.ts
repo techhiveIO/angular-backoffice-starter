@@ -5,7 +5,7 @@ import {of} from 'rxjs';
 import {MockStore, provideMockStore} from '@ngrx/store/testing';
 import {MemoizedSelector} from '@ngrx/store';
 import {selectIsAuthenticated} from '../store/auth.selectors';
-import {actionLogin} from '../store/authActionTypes';
+import {actionLogin, actionLogout} from '../store/authActionTypes';
 import {AuthApi} from './auth-api.service';
 import {AuthStateInterface} from '../../../shared/models/authState.model';
 import {User} from '../../../shared/models/user.model';
@@ -65,6 +65,20 @@ describe('Auth Facade Service', () => {
           expect(store.dispatch).toHaveBeenCalledTimes(1);
           expect(store.dispatch).toHaveBeenCalledWith(actionLogin({payload: MOCKED_AUTH_STATE}));
         });
+    });
+  });
+
+  describe('signOut', () => {
+    beforeEach(async(() => {
+      configureTestingModule(false);
+    }));
+
+    it('should dispatch a logout action', () => {
+      spyOn(store, 'dispatch').and.callThrough();
+
+      service.signOut();
+      expect(store.dispatch).toHaveBeenCalledTimes(1);
+      expect(store.dispatch).toHaveBeenCalledWith(actionLogout({}));
     });
   });
 

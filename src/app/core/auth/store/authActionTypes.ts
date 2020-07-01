@@ -12,4 +12,4 @@ export const actionLogin = createAction(AuthActionTypes.LOGIN,
   }>()
 );
 
-export const actionLogout = createAction(AuthActionTypes.LOGOUT);
+export const actionLogout = createAction(AuthActionTypes.LOGOUT, props<{}>());

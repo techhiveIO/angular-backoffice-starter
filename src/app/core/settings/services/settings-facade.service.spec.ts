@@ -4,7 +4,7 @@ import {MockStore, provideMockStore} from '@ngrx/store/testing';
 import {TranslateService} from '@ngx-translate/core';
 import {AVAILABLE_LANGUAGES, READ_DIRECTIONS, SettingsStateInterface} from '../../../shared/models/settingsState.model';
 import {MemoizedSelector} from '@ngrx/store';
-import {selectCurrentLanguage} from '../settings.selector';
+import {selectCurrentDirection, selectCurrentLanguage} from '../settings.selector';
 
 describe('SettingsFacadeService', () => {
   const mockedInitialSettingsState: SettingsStateInterface = {
@@ -16,6 +16,7 @@ describe('SettingsFacadeService', () => {
   let store: MockStore;
   let mockedTranslateService: jasmine.SpyObj<TranslateService>;
   let mockedCurrentLanguageSelector: MemoizedSelector<SettingsStateInterface, string>;
+  let mockedCurrentDirectionSelector: MemoizedSelector<SettingsStateInterface, string>;
 
   const configureTestingModule: () => void = () => {
     mockedTranslateService = jasmine.createSpyObj(TranslateService, ['use']);
@@ -29,10 +30,17 @@ describe('SettingsFacadeService', () => {
     });
 
     store = TestBed.inject(MockStore);
+
     mockedCurrentLanguageSelector = store.overrideSelector(
       selectCurrentLanguage,
       mockedInitialSettingsState.language,
     );
+
+    mockedCurrentDirectionSelector = store.overrideSelector(
+      selectCurrentDirection,
+      mockedInitialSettingsState.direction,
+    );
+
     service = TestBed.inject(SettingsFacade);
   };
 

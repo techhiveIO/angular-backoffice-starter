@@ -6,6 +6,7 @@ import {NavigationLinkInterface} from './shared/models/navigation-link.model';
 import {NavigationMenuLinks} from './shared/consts/navigation-links.consts';
 import {AVAILABLE_LANGUAGES, READ_DIRECTIONS} from './shared/models/settingsState.model';
 import {SettingsFacade} from './core/settings/services';
+import {AuthFacade} from './core/auth/services';
 
 @Component({
   selector: 'app-root',
@@ -24,6 +25,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     private readonly router: Router,
+    private readonly authFacade: AuthFacade,
     private readonly settingsFacade: SettingsFacade,
   ) {
   }
@@ -48,5 +50,9 @@ export class AppComponent implements OnInit {
 
   toggleDrawer(): void {
     this.drawerOpened = !this.drawerOpened;
+  }
+
+  logOutUser(): void {
+    this.authFacade.signOut();
   }
 }
