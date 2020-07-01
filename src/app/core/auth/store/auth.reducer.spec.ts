@@ -1,7 +1,7 @@
 import {Action} from '@ngrx/store';
 import {authReducer, initialState} from './auth.reducer';
-import {actionLogin, actionLogout} from './authActionTypes';
-import {MOCKED_AUTH_STATE} from '../../../shared/mocks/auth.mocks';
+import {actionLogin, actionLogout, actionStoreConfirmationToken} from './authActionTypes';
+import {MOCKED_AUTH_STATE, MOCKED_AUTH_STATE_WITH_CONFIRMATION, MOCKED_CONFIRMATION_EMAIL_TOKEN} from '../../../shared/mocks/auth.mocks';
 
 describe('Auth Reducer', () => {
   const mockedEmptyAction: Action = {type: ''};
@@ -18,6 +18,17 @@ describe('Auth Reducer', () => {
       const loadedState = authReducer(undefined, actionLogin({payload: MOCKED_AUTH_STATE}));
 
       expect(loadedState).toEqual(MOCKED_AUTH_STATE);
+    });
+  });
+
+  describe('on store email token', () => {
+    it('should store the email confirmation token', () => {
+      const loadedState = authReducer(
+        undefined,
+        actionStoreConfirmationToken({payload: {confirmationToken: MOCKED_CONFIRMATION_EMAIL_TOKEN}}),
+      );
+
+      expect(loadedState).toEqual(MOCKED_AUTH_STATE_WITH_CONFIRMATION);
     });
   });
 

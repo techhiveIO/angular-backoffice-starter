@@ -1,7 +1,7 @@
 import {AuthFacade} from './auth-facade.service';
 import {async, TestBed} from '@angular/core/testing';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
-import {of} from 'rxjs';
+import {of, throwError} from 'rxjs';
 import {MockStore, provideMockStore} from '@ngrx/store/testing';
 import {MemoizedSelector} from '@ngrx/store';
 import {selectIsAuthenticated} from '../store/auth.selectors';
@@ -9,8 +9,10 @@ import {actionLogin, actionLogout} from '../store/authActionTypes';
 import {AuthApi} from './auth-api.service';
 import {AuthStateInterface} from '../../../shared/models/authState.model';
 import {User} from '../../../shared/models/user.model';
-import {MOCKED_AUTH_STATE} from '../../../shared/mocks/auth.mocks';
+import {MOCKED_AUTH_STATE, MOCKED_CONFIRMATION_EMAIL_TOKEN} from '../../../shared/mocks/auth.mocks';
 import {NotificationsFacade} from '../../services';
+import {MOCKED_API_USER} from '../../../shared/mocks/users.mocks';
+import {take} from 'rxjs/operators';
 
 describe('Auth Facade Service', () => {
   const mockedInitialAuthState: AuthStateInterface = {
@@ -25,7 +27,7 @@ describe('Auth Facade Service', () => {
   let mockedNotificationsFacade: jasmine.SpyObj<NotificationsFacade>;
 
   const configureTestingModule: (userIsAuthenticated: boolean) => void = (userIsAuthenticated) => {
-    mockedAuthApi = jasmine.createSpyObj('AuthApi', ['login']);
+    mockedAuthApi = jasmine.createSpyObj('AuthApi', ['login', 'fetchVerificationTokenInfo', 'register']);
     mockedAuthApi.login.and.returnValue(of(MOCKED_AUTH_STATE));
     mockedNotificationsFacade = jasmine.createSpyObj(NotificationsFacade, ['displayErrorMessage']);
 
@@ -107,6 +109,56 @@ describe('Auth Facade Service', () => {
             expect(isAuthenticated).toBe(true);
           });
       });
+    });
+  });
+
+  describe('register', () => {
+    beforeEach(async(() => {
+      configureTestingModule(false);
+    }));
+
+    const data = MOCKED_API_USER;
+    const mockedPassword = 'mockedPassword';
+
+    describe('When the request goes through', () => {
+      it('should call the correct auth api function', () => {
+        mockedAuthApi.register.and.returnValue(of({}));
+
+        service.register(data.first_name, data.last_name, data.email, mockedPassword)
+          .pipe(take(1))
+          .subscribe((res) => {
+            expect(mockedAuthApi.register).toHaveBeenCalledTimes(1);
+            expect(mockedAuthApi.register).toHaveBeenCalledWith(data.first_name, data.last_name, data.email, mockedPassword);
+            expect(res).toEqual({});
+          });
+      });
+    });
+
+    describe('When the request errors', () => {
+      it('should display an error notification', () => {
+        mockedAuthApi.register.and.returnValue(throwError('err'));
+
+        service.register(data.first_name, data.last_name, data.email, mockedPassword)
+          .pipe(take(1))
+          .subscribe(() => {
+            },
+            error => {
+              expect(mockedNotificationsFacade.displayErrorMessage).toHaveBeenCalledTimes(1);
+            });
+      });
+    });
+  });
+
+  describe('decodeVerificationToken', () => {
+    beforeEach(async(() => {
+      configureTestingModule(false);
+    }));
+
+    it('should call the correct function in auth api', () => {
+      service.decodeVerificationToken(MOCKED_CONFIRMATION_EMAIL_TOKEN.token);
+
+      expect(mockedAuthApi.fetchVerificationTokenInfo).toHaveBeenCalledTimes(1);
+      expect(mockedAuthApi.fetchVerificationTokenInfo).toHaveBeenCalledWith(MOCKED_CONFIRMATION_EMAIL_TOKEN.token);
     });
   });
 });

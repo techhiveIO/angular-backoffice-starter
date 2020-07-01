@@ -5,7 +5,7 @@ import {catchError, map, tap} from 'rxjs/operators';
 import {selectIsAuthenticated} from '../store/auth.selectors';
 import {actionLogin, actionLogout} from '../store/authActionTypes';
 import {AuthApi} from './auth-api.service';
-import {AuthStateInterface} from '../../../shared/models/authState.model';
+import {AuthStateInterface, ConfirmationTokenInterface} from '../../../shared/models/authState.model';
 import {User} from '../../../shared/models/user.model';
 import {NotificationsFacade} from '../../services';
 
@@ -43,5 +43,9 @@ export class AuthFacade {
 
   public isAuthenticated(): Observable<boolean> {
     return this.authStore.pipe(select(selectIsAuthenticated));
+  }
+
+  public decodeVerificationToken(token: string): Observable<ConfirmationTokenInterface> {
+    return this.authApi.fetchVerificationTokenInfo(token);
   }
 }

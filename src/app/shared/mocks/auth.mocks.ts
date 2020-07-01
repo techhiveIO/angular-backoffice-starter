@@ -1,5 +1,19 @@
-import {AuthStateApiInterface, AuthStateInterface} from '../models/authState.model';
+import {AuthStateApiInterface, AuthStateInterface, ConfirmationTokenInterface, ConfirmationTokenType} from '../models/authState.model';
 import {User, UserRole} from '../models/user.model';
+
+export const MOCKED_CONFIRMATION_EMAIL_TOKEN: ConfirmationTokenInterface = {
+  token: 'mockedToken',
+  type: ConfirmationTokenType.CONFIRMATION,
+  userId: '01',
+  email: 'ali@techhive.io',
+};
+
+export const MOCKED_INVITATION_EMAIL_TOKEN: ConfirmationTokenInterface = {
+  token: 'mockedToken',
+  type: ConfirmationTokenType.INVITATION,
+  userId: '01',
+  email: 'ali@techhive.io',
+};
 
 export const MOCKED_AUTH_API_STATE: AuthStateApiInterface = {
   token: 'mockedToken',
@@ -25,4 +39,11 @@ export const MOCKED_AUTH_STATE: AuthStateInterface = {
     role: UserRole.Admin,
     password: 'password',
   }),
+  confirmationToken: null,
+};
+
+export const MOCKED_AUTH_STATE_WITH_CONFIRMATION: AuthStateInterface = {
+  token: '',
+  user: null,
+  confirmationToken: MOCKED_CONFIRMATION_EMAIL_TOKEN,
 };

@@ -1,7 +1,8 @@
 import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
-import {AuthPageComponent, LoginPageComponent, SignupPageComponent} from './pages';
+import {AuthPageComponent, ConfirmEmailPageComponent, LoginPageComponent, SignupPageComponent} from './pages';
 import {ResetPasswordPageComponent} from './pages/reset-password/reset-password.page';
+import {ConfirmationTokenResolver} from './resolvers';
 
 const routes: Routes = [
   {
@@ -24,6 +25,13 @@ const routes: Routes = [
       {
         path: 'reset-password',
         component: ResetPasswordPageComponent,
+      },
+      {
+        path: 'confirm-email/:token',
+        component: ConfirmEmailPageComponent,
+        resolve: {
+          token: ConfirmationTokenResolver,
+        },
       }
     ]
   }
@@ -33,9 +41,14 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-
 export class AuthRoutingModule {
 
 }
 
-export const routedComponents = [AuthPageComponent, LoginPageComponent, SignupPageComponent, ResetPasswordPageComponent];
+export const routedComponents = [
+  AuthPageComponent,
+  LoginPageComponent,
+  SignupPageComponent,
+  ResetPasswordPageComponent,
+  ConfirmEmailPageComponent,
+];
