@@ -10,6 +10,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
 import {ClipboardModule} from '@angular/cdk/clipboard';
+import {HideEmailPipe} from './pipes';
 
 const LIBRARY_MODULES = [
   MatDialogModule,
@@ -20,6 +21,8 @@ const LIBRARY_MODULES = [
   MatSelectModule,
   ClipboardModule,
 ];
+
+const PIPES = [HideEmailPipe];
 
 const ENTRY_COMPONENTS = [ConfirmationDialogComponent];
 const COMPONENTS = [...ENTRY_COMPONENTS, GeneralLayoutComponent,];
@@ -33,7 +36,8 @@ const COMPONENTS = [...ENTRY_COMPONENTS, GeneralLayoutComponent,];
     ...LIBRARY_MODULES,
   ],
   declarations: [
-    ...COMPONENTS
+    ...COMPONENTS,
+    ...PIPES,
   ],
   entryComponents: [
     ...ENTRY_COMPONENTS
@@ -45,6 +49,7 @@ const COMPONENTS = [...ENTRY_COMPONENTS, GeneralLayoutComponent,];
     TranslateModule,
     ...LIBRARY_MODULES,
     ...COMPONENTS,
+    ...PIPES,
   ],
 })
 

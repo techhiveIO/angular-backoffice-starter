@@ -1,1 +1,16 @@
-Hello Confirm Email
+<div class="auth-content">
+  <img src="assets/brand/logo.svg" class="brand-logo"/>
+
+  <ng-container *ngIf="!isTokenExpired">
+    <div id="templateExpiredToken">
+      <h1 class="auth-header">
+        The verification code has expired.
+      </h1>
+      <p>
+        The verification code you tried to use has expired. If this is your email address
+        <span class="highlight">{{token.email | HideEmail}}</span>, you may request a new verification email.
+      </p>
+      <button mat-flat-button color="primary">Send a new email</button>
+    </div>
+  </ng-container>
+</div>

@@ -5,14 +5,14 @@ export const MOCKED_CONFIRMATION_EMAIL_TOKEN: ConfirmationTokenInterface = {
   token: 'mockedToken',
   type: ConfirmationTokenType.CONFIRMATION,
   userId: '01',
-  email: 'ali@techhive.io',
+  email: 'aliobaji@techhive.io',
 };
 
 export const MOCKED_INVITATION_EMAIL_TOKEN: ConfirmationTokenInterface = {
   token: 'mockedToken',
   type: ConfirmationTokenType.INVITATION,
   userId: '01',
-  email: 'ali@techhive.io',
+  email: 'aliobaji@techhive.io',
 };
 
 export const MOCKED_AUTH_API_STATE: AuthStateApiInterface = {
