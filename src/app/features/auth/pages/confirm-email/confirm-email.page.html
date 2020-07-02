@@ -1,24 +1,38 @@
+<mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
 <div class="auth-content">
   <img src="assets/brand/logo.svg" class="brand-logo"/>
-
-  <ng-container *ngIf="isTokenExpired">
+  <ng-container *ngIf="token.type === allTokenTypes.EXPIRED">
     <div id="templateExpiredToken">
       <h1 class="auth-header">
         The verification code has expired.
       </h1>
       <p>
-        The verification code you tried to use has expired. If this is your email address
+        The verification code you tried to use has expired. If this is your email address:
         <span class="highlight">{{token.email | HideEmail}}</span>, you may request a new verification email.
       </p>
-      <button mat-flat-button color="primary">Send a new email</button>
+      <button
+        mat-flat-button
+        color="primary"
+        [disabled]="isLoading"
+        (click)="onRequestNewEmail()"
+      >
+        Request Verification Email
+      </button>
     </div>
   </ng-container>
 
-  <ng-container *ngIf="token.type === allTokenTypes.INVITATION && !isTokenExpired">
+  <ng-container *ngIf="token.type === allTokenTypes.INVITATION">
     <app-registration-form
+      id="templateInvitationToken"
       [isLoading]="isLoading"
       (submit)="createAccount($event)"
     >
     </app-registration-form>
+  </ng-container>
+
+  <ng-container *ngIf="token.type === allTokenTypes.CONFIRMATION">
+    <div id="templateConfirmationToken">
+      Yes
+    </div>
   </ng-container>
 </div>

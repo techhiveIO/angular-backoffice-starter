@@ -3,6 +3,7 @@ import {User, UserApiInterface} from './user.model';
 export enum ConfirmationTokenType {
   CONFIRMATION = 'CONFIRMATION',
   INVITATION = 'INVITATION',
+  EXPIRED = 'EXPIRED',
 }
 
 export interface ConfirmationTokenInterface {

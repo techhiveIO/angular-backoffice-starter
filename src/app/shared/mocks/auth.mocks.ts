@@ -15,6 +15,13 @@ export const MOCKED_INVITATION_EMAIL_TOKEN: ConfirmationTokenInterface = {
   email: 'aliobaji@techhive.io',
 };
 
+export const MOCKED_EXPIRED_TOKEN: ConfirmationTokenInterface = {
+  token: 'mockedToken',
+  type: ConfirmationTokenType.EXPIRED,
+  userId: '01',
+  email: 'aliobaji@techhive.io',
+};
+
 export const MOCKED_AUTH_API_STATE: AuthStateApiInterface = {
   token: 'mockedToken',
   user: {

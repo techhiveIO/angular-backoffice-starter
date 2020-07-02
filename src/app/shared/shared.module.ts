@@ -11,6 +11,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
 import {ClipboardModule} from '@angular/cdk/clipboard';
 import {HideEmailPipe} from './pipes';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 const LIBRARY_MODULES = [
   MatDialogModule,
@@ -19,6 +20,7 @@ const LIBRARY_MODULES = [
   MatTooltipModule,
   MatIconModule,
   MatSelectModule,
+  MatProgressBarModule,
   ClipboardModule,
 ];
 

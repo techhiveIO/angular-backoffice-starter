@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ConfirmationTokenInterface, ConfirmationTokenType} from '../../../../shared/models/authState.model';
-import {FormBuilder, FormGroup} from '@angular/forms';
 import {User} from '../../../../shared/models/user.model';
 
 @Component({
@@ -14,10 +13,8 @@ export class ConfirmEmailPageComponent implements OnInit {
   allTokenTypes = ConfirmationTokenType;
   token: ConfirmationTokenInterface;
   isTokenExpired = false;
-  formGroup: FormGroup;
 
   constructor(
-    private readonly formBuilder: FormBuilder,
     private readonly activatedRoute: ActivatedRoute,
   ) {
   }
@@ -25,16 +22,17 @@ export class ConfirmEmailPageComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe((data: { token: ConfirmationTokenInterface }) => {
       this.token = data.token;
-      this.token.type = this.allTokenTypes.INVITATION;
-      this.isTokenExpired = false;
-    }, error => {
-      this.isTokenExpired = true;
-      this.token = null;
+
+      this.prepareView(this.token);
     });
   }
 
   onRequestNewEmail(): void {
+    this.isLoading = true;
 
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 2000);
   }
 
   /**
@@ -51,5 +49,18 @@ export class ConfirmEmailPageComponent implements OnInit {
    */
   private confirmAccount(): void {
 
+  }
+
+  private prepareView(token: ConfirmationTokenInterface): void {
+    switch (token.type) {
+      case ConfirmationTokenType.EXPIRED:
+        this.isTokenExpired = true;
+        break;
+      case ConfirmationTokenType.CONFIRMATION:
+        this.confirmAccount();
+        break;
+      default:
+        this.isTokenExpired = false;
+    }
   }
 }
