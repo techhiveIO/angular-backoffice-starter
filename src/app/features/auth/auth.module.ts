@@ -7,6 +7,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {ConfirmationTokenResolver} from './resolvers';
+import {RegistrationFormComponent} from './containers';
 
 const LIBRARY_MODULES = [
   MatCardModule,
@@ -16,7 +17,10 @@ const LIBRARY_MODULES = [
   MatIconModule,
 ];
 
-const COMPONENTS = [...routedComponents];
+const COMPONENTS = [
+  RegistrationFormComponent,
+  ...routedComponents
+];
 
 const SERVICES = [ConfirmationTokenResolver];
 

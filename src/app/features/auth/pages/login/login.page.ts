@@ -4,7 +4,7 @@ import {AuthFacade} from '../../../../core/auth/services';
 
 @Component({
   templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss', '../auth.theme.scss'],
+  styleUrls: ['./login.page.scss', '../../auth.theme.scss'],
 })
 
 export class LoginPageComponent implements OnInit {
@@ -34,7 +34,7 @@ export class LoginPageComponent implements OnInit {
           this.isLoading = false;
         },
         error => {
-          this.isLoading = true;
+          this.isLoading = false;
         });
   }
 }

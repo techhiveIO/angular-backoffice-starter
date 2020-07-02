@@ -1,51 +1,41 @@
-import {LoginPageComponent} from './login.page';
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {BrowserTestingModule} from '@angular/platform-browser/testing';
+import {RegistrationFormComponent} from './registration-form.component';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {TranslateModule} from '@ngx-translate/core';
-import {AuthFacade} from '../../../../core/auth/services';
-import {of} from 'rxjs';
-import {MOCKED_USER} from '../../../../shared/mocks/users.mocks';
 
-describe('LoginPage', () => {
-  let fixture: ComponentFixture<LoginPageComponent>;
-  let component: LoginPageComponent;
+describe('RegistrationFormComponent', () => {
+  let fixture: ComponentFixture<RegistrationFormComponent>;
+  let component: RegistrationFormComponent;
   let mockedFormBuilder: jasmine.SpyObj<FormBuilder>;
-  let mockedAuthFacade: jasmine.SpyObj<AuthFacade>;
 
   const mockedFormGroup: FormGroup = new FormBuilder().group({
+    firstName: ['', Validators.required],
+    lastName: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required],
-    rememberMe: [false],
   });
 
-  const configureTestingModule: () => void = () => {
+  const configureTestingModule = () => {
     mockedFormBuilder = jasmine.createSpyObj('FormBuilder', ['group']);
     mockedFormBuilder.group.and.returnValue(mockedFormGroup);
-    mockedAuthFacade = jasmine.createSpyObj('AuthFacade', ['attemptLogin']);
-    mockedAuthFacade.attemptLogin.and.returnValue(of(MOCKED_USER));
 
     TestBed.configureTestingModule({
-      imports: [
-        BrowserTestingModule,
-        TranslateModule.forRoot(),
+      declarations: [
+        RegistrationFormComponent,
       ],
-      declarations: [LoginPageComponent],
       providers: [
         {provide: FormBuilder, useValue: mockedFormBuilder},
-        {provide: AuthFacade, useValue: mockedAuthFacade},
       ],
     }).compileComponents();
   };
 
   const initializeTestComponent: () => void = (): void => {
-    fixture = TestBed.createComponent(LoginPageComponent);
+    fixture = TestBed.createComponent(RegistrationFormComponent);
     component = fixture.componentInstance;
 
     fixture.detectChanges();
   };
 
-  describe('onInit', () => {
+  describe('ngOnInit', () => {
     beforeEach(async(() => {
       configureTestingModule();
     }));
@@ -57,14 +47,15 @@ describe('LoginPage', () => {
     it('should build the login form', () => {
       expect(mockedFormBuilder.group).toHaveBeenCalledTimes(1);
       expect(mockedFormBuilder.group).toHaveBeenCalledWith({
+        firstName: ['', Validators.required],
+        lastName: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
         password: ['', Validators.required],
-        rememberMe: [false],
       });
     });
   });
 
-  describe('OnSubmit', () => {
+  describe('toggleHidePassword', () => {
     beforeEach(async(() => {
       configureTestingModule();
     }));
@@ -73,17 +64,38 @@ describe('LoginPage', () => {
       initializeTestComponent();
     });
 
-    it('should call the correct login authFacade function', () => {
+    it('should invert the hidden flag if clicked', () => {
+      const defaultFlagValue = false;
+      component.passwordHidden = defaultFlagValue;
+      component.toggleHidePassword();
+
+      expect(component.passwordHidden).not.toBe(defaultFlagValue);
+    });
+  });
+
+  describe('onSubmit', () => {
+    beforeEach(async(() => {
+      configureTestingModule();
+    }));
+
+    beforeEach(() => {
+      initializeTestComponent();
+    });
+
+    it('should emit a dump of the form', () => {
+      spyOn(component.submit, 'emit');
+
       const mockedFormData = {
+        firstName: 'fname',
+        lastName: 'lname',
         email: 'ali@techhive.io',
         password: '123123123',
       };
 
       component.formGroup.patchValue(mockedFormData);
-
       component.onSubmit();
-      expect(mockedAuthFacade.attemptLogin).toHaveBeenCalledTimes(1);
-      expect(mockedAuthFacade.attemptLogin).toHaveBeenCalledWith(mockedFormData.email, mockedFormData.password);
+      expect(component.submit.emit).toHaveBeenCalledTimes(1);
+      expect(component.submit.emit).toHaveBeenCalledWith(mockedFormData);
     });
   });
 });

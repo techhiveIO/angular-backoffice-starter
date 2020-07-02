@@ -1,7 +1,7 @@
 <div class="auth-content">
   <img src="assets/brand/logo.svg" class="brand-logo"/>
 
-  <ng-container *ngIf="!isTokenExpired">
+  <ng-container *ngIf="isTokenExpired">
     <div id="templateExpiredToken">
       <h1 class="auth-header">
         The verification code has expired.
@@ -12,5 +12,13 @@
       </p>
       <button mat-flat-button color="primary">Send a new email</button>
     </div>
+  </ng-container>
+
+  <ng-container *ngIf="token.type === allTokenTypes.INVITATION && !isTokenExpired">
+    <app-registration-form
+      [isLoading]="isLoading"
+      (submit)="createAccount($event)"
+    >
+    </app-registration-form>
   </ng-container>
 </div>

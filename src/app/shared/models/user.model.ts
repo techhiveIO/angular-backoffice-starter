@@ -20,6 +20,7 @@ interface UserInterface {
   email: string;
   phoneNumber: string;
   role: UserRole;
+  password: string;
 }
 
 export class User implements UserInterface {
@@ -29,6 +30,7 @@ export class User implements UserInterface {
   email: string;
   phoneNumber: string;
   role: UserRole;
+  password: string;
 
   constructor(user: UserApiInterface) {
     this.id = user.id;
@@ -37,5 +39,6 @@ export class User implements UserInterface {
     this.email = user.email;
     this.phoneNumber = user.phoneNumber;
     this.role = user.role;
+    this.password = user.password;
   }
 }
