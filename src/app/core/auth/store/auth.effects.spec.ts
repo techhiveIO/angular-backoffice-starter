@@ -6,7 +6,7 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {LocalStorageFacade} from '../../services';
 import {Router} from '@angular/router';
 import {MOCKED_AUTH_STATE} from '../../../shared/mocks/auth.mocks';
-import {ROUTES_GENERAL} from '../../../app-routing.module';
+import {ROUTES_GENERAL} from '../../../shared/consts/routes.consts';
 
 describe('Auth State Effects', () => {
   let effects: AuthStoreEffects;

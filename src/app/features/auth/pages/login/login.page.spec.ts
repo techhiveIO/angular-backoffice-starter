@@ -6,12 +6,14 @@ import {TranslateModule} from '@ngx-translate/core';
 import {AuthFacade} from '../../../../core/auth/services';
 import {of} from 'rxjs';
 import {MOCKED_USER} from '../../../../shared/mocks/users.mocks';
+import {Router} from '@angular/router';
 
 describe('LoginPage', () => {
   let fixture: ComponentFixture<LoginPageComponent>;
   let component: LoginPageComponent;
   let mockedFormBuilder: jasmine.SpyObj<FormBuilder>;
   let mockedAuthFacade: jasmine.SpyObj<AuthFacade>;
+  let mockedRouter: jasmine.SpyObj<Router>;
 
   const mockedFormGroup: FormGroup = new FormBuilder().group({
     email: ['', [Validators.required, Validators.email]],
@@ -24,6 +26,7 @@ describe('LoginPage', () => {
     mockedFormBuilder.group.and.returnValue(mockedFormGroup);
     mockedAuthFacade = jasmine.createSpyObj('AuthFacade', ['attemptLogin']);
     mockedAuthFacade.attemptLogin.and.returnValue(of(MOCKED_USER));
+    mockedRouter = jasmine.createSpyObj(Router, ['navigate']);
 
     TestBed.configureTestingModule({
       imports: [
@@ -34,6 +37,7 @@ describe('LoginPage', () => {
       providers: [
         {provide: FormBuilder, useValue: mockedFormBuilder},
         {provide: AuthFacade, useValue: mockedAuthFacade},
+        {provide: Router, useValue: mockedRouter},
       ],
     }).compileComponents();
   };

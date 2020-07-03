@@ -11,13 +11,14 @@ import {AuthStateInterface} from '../../../shared/models/authState.model';
 import {User} from '../../../shared/models/user.model';
 import {MOCKED_AUTH_STATE, MOCKED_CONFIRMATION_EMAIL_TOKEN} from '../../../shared/mocks/auth.mocks';
 import {NotificationsFacade} from '../../services';
-import {MOCKED_API_USER} from '../../../shared/mocks/users.mocks';
+import {MOCKED_API_USER, MOCKED_USER} from '../../../shared/mocks/users.mocks';
 import {take} from 'rxjs/operators';
 
 describe('Auth Facade Service', () => {
   const mockedInitialAuthState: AuthStateInterface = {
     token: '',
     user: null,
+    attemptedEmail: null,
   };
 
   let service: AuthFacade;
@@ -122,14 +123,14 @@ describe('Auth Facade Service', () => {
 
     describe('When the request goes through', () => {
       it('should call the correct auth api function', () => {
-        mockedAuthApi.register.and.returnValue(of({}));
+        mockedAuthApi.register.and.returnValue(of(MOCKED_USER));
 
         service.register(data.first_name, data.last_name, data.email, mockedPassword)
           .pipe(take(1))
           .subscribe((res) => {
             expect(mockedAuthApi.register).toHaveBeenCalledTimes(1);
             expect(mockedAuthApi.register).toHaveBeenCalledWith(data.first_name, data.last_name, data.email, mockedPassword);
-            expect(res).toEqual({});
+            expect(res).toEqual(MOCKED_USER);
           });
       });
     });
