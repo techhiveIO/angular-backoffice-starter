@@ -3,7 +3,7 @@ import {select, Store} from '@ngrx/store';
 import {Observable, throwError} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
 import {selectAttemptedEmail, selectIsAuthenticated} from '../store/auth.selectors';
-import {actionLogin, actionLogout, actionStoreEmailAttempt} from '../store/authActionTypes';
+import {actionClearEmailAttempt, actionLogin, actionLogout, actionStoreEmailAttempt} from '../store/authActionTypes';
 import {AuthApi} from './auth-api.service';
 import {AuthStateInterface, ConfirmationTokenInterface} from '../../../shared/models/authState.model';
 import {User} from '../../../shared/models/user.model';
@@ -22,8 +22,8 @@ export class AuthFacade {
   public attemptLogin(email: string, password: string): Observable<User> {
     return this.authApi.login(email, password)
       .pipe(
-        tap((authState: AuthStateInterface) => this.authStore.dispatch(actionLogin({payload: authState}))),
-        map((authState: AuthStateInterface) => authState.user),
+        tap((authState: Partial<AuthStateInterface>) => this.authStore.dispatch(actionLogin({payload: authState}))),
+        map((authState: Partial<AuthStateInterface>) => authState.user),
       );
   }
 
@@ -55,6 +55,10 @@ export class AuthFacade {
 
   public fetchStoredEmailAttempt(): Observable<string> {
     return this.authStore.pipe(select(selectAttemptedEmail));
+  }
+
+  public clearEmailAttempt(): void {
+    this.authStore.dispatch(actionClearEmailAttempt({}));
   }
 
   public requestPasswordReset(email: string): Observable<boolean> {

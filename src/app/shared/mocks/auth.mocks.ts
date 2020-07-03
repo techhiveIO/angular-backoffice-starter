@@ -23,7 +23,7 @@ export const MOCKED_EXPIRED_TOKEN: ConfirmationTokenInterface = {
 };
 
 export const MOCKED_AUTH_API_STATE: AuthStateApiInterface = {
-  token: 'mockedToken',
+  access_token: 'mockedToken',
   user: {
     id: '123',
     first_name: 'Ali',

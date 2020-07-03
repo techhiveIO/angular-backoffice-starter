@@ -3,8 +3,8 @@ import {HttpClient} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {environment} from '../../../../environments/environment';
-import {AuthStateApiInterface, ConfirmationTokenInterface} from '../../../shared/models/authState.model';
-import {User} from '../../../shared/models/user.model';
+import {AuthStateApiInterface, AuthStateInterface, ConfirmationTokenInterface} from '../../../shared/models/authState.model';
+import {User, UserApiInterface} from '../../../shared/models/user.model';
 import {MOCKED_CONFIRMATION_EMAIL_TOKEN} from '../../../shared/mocks/auth.mocks';
 
 @Injectable()
@@ -17,7 +17,7 @@ export class AuthApi {
   constructor(private http: HttpClient) {
   }
 
-  public login(email: string, password: string): Observable<any> {
+  public login(email: string, password: string): Observable<Pick<AuthStateInterface, 'user' | 'token'>> {
     const body = {
       email,
       password,
@@ -27,13 +27,13 @@ export class AuthApi {
       .pipe(
         map((res: any) => res.data),
         map((authState: AuthStateApiInterface) => ({
-          token: authState.token,
+          token: authState.access_token,
           user: new User(authState.user),
         })),
       );
   }
 
-  public register(firstName: string, lastName: string, email: string, password: string): Observable<any> {
+  public register(firstName: string, lastName: string, email: string, password: string): Observable<User> {
     const body = {
       first_name: firstName,
       last_name: lastName,
@@ -41,7 +41,10 @@ export class AuthApi {
       password,
     };
 
-    return this.http.post(this.API_REGISTER, body);
+    return this.http.post(this.API_REGISTER, body)
+      .pipe(
+        map((user: UserApiInterface) => new User(user)),
+      );
   }
 
   public fetchVerificationTokenInfo(token: string): Observable<ConfirmationTokenInterface> {

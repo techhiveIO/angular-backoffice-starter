@@ -51,6 +51,7 @@ export class ResetPasswordPageComponent implements OnInit {
 
   private redirectUserToLogin(): void {
     setTimeout(() => {
+      this.authFacade.clearEmailAttempt();
       void this.router.navigate([`/auth/${ROUTES_AUTH.LOGIN}`]);
     }, 5000);
   }

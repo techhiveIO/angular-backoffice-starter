@@ -6,11 +6,12 @@ export enum AuthActionTypes {
   LOGOUT = '[Auth] LOGOUT',
   STORE_EMAIL_TOKEN = '[Auth] STORE EMAIL TOKEN',
   STORE_EMAIL_ATTEMPT = '[Auth] STORE EMAIL ATTEMPT',
+  CLEAR_EMAIL_ATTEMPT = '[Auth] CLEAR EMAIL ATTEMPT',
 }
 
 export const actionLogin = createAction(AuthActionTypes.LOGIN,
   props<{
-    payload: AuthStateInterface
+    payload: Partial<AuthStateInterface>
   }>()
 );
 
@@ -27,3 +28,5 @@ export const actionStoreEmailAttempt = createAction(AuthActionTypes.STORE_EMAIL_
     payload: { attemptedEmail: string },
   }>()
 );
+
+export const actionClearEmailAttempt = createAction(AuthActionTypes.CLEAR_EMAIL_ATTEMPT, props<{}>());

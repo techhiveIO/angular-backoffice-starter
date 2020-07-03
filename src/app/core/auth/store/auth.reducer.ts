@@ -1,5 +1,5 @@
 import {Action, createReducer, on} from '@ngrx/store';
-import {actionLogin, actionLogout, actionStoreConfirmationToken, actionStoreEmailAttempt} from './authActionTypes';
+import {actionClearEmailAttempt, actionLogin, actionLogout, actionStoreConfirmationToken, actionStoreEmailAttempt} from './authActionTypes';
 import {AuthStateInterface} from '../../../shared/models/authState.model';
 
 export const initialState: AuthStateInterface = {
@@ -17,7 +17,8 @@ const reducer = createReducer(
     actionStoreEmailAttempt,
     (state, action: { payload: Partial<AuthStateInterface> }) => ({...state, ...action.payload}),
   ),
-  on(actionLogout, (state) => (initialState))
+  on(actionLogout, (state) => (initialState)),
+  on(actionClearEmailAttempt, (state => ({...state, attemptedEmail: null}))),
 );
 
 export function authReducer(state: AuthStateInterface | undefined, action: Action) {

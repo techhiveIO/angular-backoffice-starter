@@ -14,7 +14,7 @@ export interface ConfirmationTokenInterface {
 }
 
 export interface AuthStateApiInterface {
-  token: string;
+  access_token: string;
   user: UserApiInterface;
 }
 
