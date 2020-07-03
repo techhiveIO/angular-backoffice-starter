@@ -32,7 +32,15 @@
 
   <ng-container *ngIf="token.type === allTokenTypes.CONFIRMATION">
     <div id="templateConfirmationToken">
-      Yes
+      <h1 class="auth-header">
+        Hello,
+      </h1>
+      <h2>
+        Please wait while we confirm your account.
+      </h2>
+      <p>
+        Your email is: {{token.email | HideEmail}}. We will redirect you to the login page once we are done.
+      </p>
     </div>
   </ng-container>
 </div>

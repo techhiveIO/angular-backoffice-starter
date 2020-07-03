@@ -48,7 +48,7 @@ export class ConfirmEmailPageComponent implements OnInit {
    * need to enter any further information.
    */
   private confirmAccount(): void {
-
+    this.isLoading = true;
   }
 
   private prepareView(token: ConfirmationTokenInterface): void {
