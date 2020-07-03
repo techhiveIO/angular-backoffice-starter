@@ -1,9 +1,18 @@
 .auth-content {
+  display: flex;
+  flex-direction: column;
+
   margin: 40% auto auto 0;
 }
 
+.auth__btn--back {
+  margin-bottom: 2rem;
+
+  max-width: 10rem;
+}
+
 .brand-logo {
-  margin-bottom: 4rem;
+  margin: 0 auto 4rem 0;
   width: auto;
   height: 5rem;
 }
