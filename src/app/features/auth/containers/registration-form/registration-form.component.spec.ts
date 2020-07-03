@@ -83,7 +83,7 @@ describe('RegistrationFormComponent', () => {
     });
 
     it('should emit a dump of the form', () => {
-      spyOn(component.submit, 'emit');
+      spyOn(component.submitForm, 'emit');
 
       const mockedFormData = {
         firstName: 'fname',
@@ -94,8 +94,8 @@ describe('RegistrationFormComponent', () => {
 
       component.formGroup.patchValue(mockedFormData);
       component.onSubmit();
-      expect(component.submit.emit).toHaveBeenCalledTimes(1);
-      expect(component.submit.emit).toHaveBeenCalledWith(mockedFormData);
+      expect(component.submitForm.emit).toHaveBeenCalledTimes(1);
+      expect(component.submitForm.emit).toHaveBeenCalledWith(mockedFormData);
     });
   });
 });
