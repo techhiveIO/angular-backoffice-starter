@@ -10,7 +10,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 export class RegistrationFormComponent implements OnInit {
   @Input() isLoading = false;
-  @Output() submit: EventEmitter<any> = new EventEmitter<any>();
+  @Output() submitForm: EventEmitter<any> = new EventEmitter<any>();
 
   formGroup: FormGroup;
   passwordHidden = true;
@@ -36,7 +36,7 @@ export class RegistrationFormComponent implements OnInit {
   onSubmit() {
     if (this.formGroup.valid) {
       const data = this.formGroup.getRawValue();
-      this.submit.emit(data);
+      this.submitForm.emit(data);
     }
   }
 }
