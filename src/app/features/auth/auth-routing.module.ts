@@ -3,6 +3,7 @@ import {NgModule} from '@angular/core';
 import {AuthPageComponent, ConfirmEmailPageComponent, LoginPageComponent, SignupPageComponent} from './pages';
 import {ResetPasswordPageComponent} from './pages/reset-password/reset-password.page';
 import {ConfirmationTokenResolver} from './resolvers';
+import {ROUTES_AUTH} from '../../shared/consts/routes.consts';
 
 const routes: Routes = [
   {
@@ -11,23 +12,23 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'login',
+        redirectTo: ROUTES_AUTH.LOGIN,
         pathMatch: 'full',
       },
       {
-        path: 'login',
+        path: ROUTES_AUTH.LOGIN,
         component: LoginPageComponent,
       },
       {
-        path: 'sign-up',
+        path: ROUTES_AUTH.SIGN_UP,
         component: SignupPageComponent,
       },
       {
-        path: 'reset-password',
+        path: ROUTES_AUTH.RESET_PASSWORD,
         component: ResetPasswordPageComponent,
       },
       {
-        path: 'confirm-email/:token',
+        path: ROUTES_AUTH.CONFIRM_EMAIL,
         component: ConfirmEmailPageComponent,
         resolve: {
           token: ConfirmationTokenResolver,

@@ -2,8 +2,8 @@ import {Injectable} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {Observable, throwError} from 'rxjs';
 import {catchError, map, tap} from 'rxjs/operators';
-import {selectIsAuthenticated} from '../store/auth.selectors';
-import {actionLogin, actionLogout} from '../store/authActionTypes';
+import {selectAttemptedEmail, selectIsAuthenticated} from '../store/auth.selectors';
+import {actionLogin, actionLogout, actionStoreEmailAttempt} from '../store/authActionTypes';
 import {AuthApi} from './auth-api.service';
 import {AuthStateInterface, ConfirmationTokenInterface} from '../../../shared/models/authState.model';
 import {User} from '../../../shared/models/user.model';
@@ -47,5 +47,17 @@ export class AuthFacade {
 
   public decodeVerificationToken(token: string): Observable<ConfirmationTokenInterface> {
     return this.authApi.fetchVerificationTokenInfo(token);
+  }
+
+  public storeEmailAttempt(attemptedEmail: string): void {
+    this.authStore.dispatch(actionStoreEmailAttempt({payload: {attemptedEmail}}));
+  }
+
+  public fetchStoredEmailAttempt(): Observable<string> {
+    return this.authStore.pipe(select(selectAttemptedEmail));
+  }
+
+  public requestPasswordReset(email: string): Observable<boolean> {
+    return this.authApi.requestNewPassword(email);
   }
 }

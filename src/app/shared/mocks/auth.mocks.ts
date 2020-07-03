@@ -47,10 +47,12 @@ export const MOCKED_AUTH_STATE: AuthStateInterface = {
     password: 'password',
   }),
   confirmationToken: null,
+  attemptedEmail: null,
 };
 
 export const MOCKED_AUTH_STATE_WITH_CONFIRMATION: AuthStateInterface = {
   token: '',
   user: null,
   confirmationToken: MOCKED_CONFIRMATION_EMAIL_TOKEN,
+  attemptedEmail: null,
 };

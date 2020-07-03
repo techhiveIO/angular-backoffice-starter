@@ -3,12 +3,7 @@ import {Routes, RouterModule} from '@angular/router';
 import {UsersPageComponent} from './features/manage-users/pages';
 import {AuthGuardService} from './core/guards';
 import {IsLoggedInGuard} from './core/guards/isLoggedIn.guard';
-
-export enum ROUTES_GENERAL {
-  AUTH = 'auth',
-  DASHBOARD = 'dashboard',
-  USERS = 'users',
-}
+import {ROUTES_GENERAL} from './shared/consts/routes.consts';
 
 const routes: Routes = [
   {

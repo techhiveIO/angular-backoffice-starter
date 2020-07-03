@@ -22,4 +22,5 @@ export interface AuthStateInterface {
   token: string;
   user: User;
   confirmationToken?: ConfirmationTokenInterface;
+  attemptedEmail: string;
 }

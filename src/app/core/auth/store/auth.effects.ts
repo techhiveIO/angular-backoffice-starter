@@ -5,7 +5,7 @@ import {actionLogin, actionLogout} from './authActionTypes';
 import {tap} from 'rxjs/operators';
 import {Router} from '@angular/router';
 import {LocalStorageFacade} from '../../services';
-import {ROUTES_GENERAL} from '../../../app-routing.module';
+import {ROUTES_GENERAL} from '../../../shared/consts/routes.consts';
 
 @Injectable()
 export class AuthStoreEffects {

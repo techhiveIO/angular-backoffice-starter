@@ -1,5 +1,5 @@
 import {NavigationLinkInterface} from '../models/navigation-link.model';
-import {ROUTES_GENERAL} from '../../app-routing.module';
+import {ROUTES_GENERAL} from './routes.consts';
 
 export const NavigationMenuLinks: NavigationLinkInterface[] = [
   {
