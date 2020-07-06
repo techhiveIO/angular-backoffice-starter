@@ -2,7 +2,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {AuthPageComponent, ConfirmEmailPageComponent, LoginPageComponent, SignupPageComponent} from './pages';
 import {ResetPasswordPageComponent} from './pages/reset-password/reset-password.page';
-import {ConfirmationTokenResolver} from './resolvers';
+import {ConfirmationTokenResolver, ResetPasswordResolver} from './resolvers';
 import {ROUTES_AUTH} from '../../shared/consts/routes.consts';
 
 const routes: Routes = [
@@ -26,6 +26,16 @@ const routes: Routes = [
       {
         path: ROUTES_AUTH.RESET_PASSWORD,
         component: ResetPasswordPageComponent,
+        resolve: {
+          viewType: ResetPasswordResolver,
+        },
+      },
+      {
+        path: `${ROUTES_AUTH.RESET_PASSWORD}/:token`,
+        component: ResetPasswordPageComponent,
+        resolve: {
+          viewType: ResetPasswordResolver,
+        },
       },
       {
         path: ROUTES_AUTH.CONFIRM_EMAIL,

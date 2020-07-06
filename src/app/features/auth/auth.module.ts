@@ -6,7 +6,7 @@ import {SharedModule} from '../../shared/shared.module';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
-import {ConfirmationTokenResolver} from './resolvers';
+import {ConfirmationTokenResolver, ResetPasswordResolver} from './resolvers';
 import {RegistrationFormComponent} from './containers';
 
 const LIBRARY_MODULES = [
@@ -22,7 +22,7 @@ const COMPONENTS = [
   ...routedComponents
 ];
 
-const SERVICES = [ConfirmationTokenResolver];
+const SERVICES = [ConfirmationTokenResolver, ResetPasswordResolver];
 
 @NgModule({
   imports: [

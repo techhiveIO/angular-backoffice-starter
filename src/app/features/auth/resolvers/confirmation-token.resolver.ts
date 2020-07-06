@@ -5,7 +5,7 @@ import {Observable} from 'rxjs';
 import {ConfirmationTokenInterface} from '../../../shared/models/authState.model';
 
 @Injectable()
-export class ConfirmationTokenResolver implements Resolve<any> {
+export class ConfirmationTokenResolver implements Resolve<ConfirmationTokenInterface> {
 
   constructor(
     private readonly authFacade: AuthFacade,
