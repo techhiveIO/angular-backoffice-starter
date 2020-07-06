@@ -27,14 +27,14 @@ const routes: Routes = [
         path: ROUTES_AUTH.RESET_PASSWORD,
         component: ResetPasswordPageComponent,
         resolve: {
-          viewType: ResetPasswordResolver,
+          viewConfig: ResetPasswordResolver,
         },
       },
       {
         path: `${ROUTES_AUTH.RESET_PASSWORD}/:token`,
         component: ResetPasswordPageComponent,
         resolve: {
-          viewType: ResetPasswordResolver,
+          viewConfig: ResetPasswordResolver,
         },
       },
       {

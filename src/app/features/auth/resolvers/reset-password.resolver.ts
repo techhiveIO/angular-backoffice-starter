@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, Resolve} from '@angular/router';
 import {Observable} from 'rxjs';
 import {AuthFacade} from '../../../core/auth/services';
-import {map} from 'rxjs/operators';
+import {map, take} from 'rxjs/operators';
 import {ResetPasswordViewInterface, ResetPasswordViewType} from '../models/view-types.model';
 
 /**
@@ -22,6 +22,7 @@ export class ResetPasswordResolver implements Resolve<ResetPasswordViewInterface
 
     return this.authFacade.fetchStoredEmailAttempt()
       .pipe(
+        take(1),
         map((attemptedEmail: string) => {
           if (attemptedEmail) {
 
@@ -38,7 +39,7 @@ export class ResetPasswordResolver implements Resolve<ResetPasswordViewInterface
           }
 
           return {
-            viewType: ResetPasswordViewType.TYPE_EMAIL_SENT,
+            viewType: ResetPasswordViewType.TYPE_NEW_REQUEST,
           };
         }),
       );

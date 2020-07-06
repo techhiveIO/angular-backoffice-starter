@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthFacade} from '../../../../core/auth/services';
-import {take} from 'rxjs/operators';
+import {map, take} from 'rxjs/operators';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ROUTES_AUTH} from '../../../../shared/consts/routes.consts';
+import {ResetPasswordViewInterface, ResetPasswordViewType} from '../../models/view-types.model';
 
 @Component({
   templateUrl: './reset-password.page.html',
@@ -14,7 +15,8 @@ export class ResetPasswordPageComponent implements OnInit {
   isLoading = false;
   formGroup: FormGroup;
 
-  emailSent = false;
+  allViewTypes = ResetPasswordViewType;
+  viewConfig: ResetPasswordViewInterface;
 
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -25,15 +27,12 @@ export class ResetPasswordPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authFacade.fetchStoredEmailAttempt()
-      .pipe(take(1))
-      .subscribe((email: string) => {
-        this.formGroup = this.buildEmailForm(email);
-      });
-
-    this.activatedRoute.params.subscribe((p: {token: string}) => {
-      console.log(p.token);
-    });
+    this.activatedRoute.data
+      .pipe(
+        take(1),
+        map((data: { viewConfig: ResetPasswordViewInterface }) => data.viewConfig),
+      )
+      .subscribe(this.setUpView);
   }
 
   requestAPasswordReset(): void {
@@ -42,18 +41,61 @@ export class ResetPasswordPageComponent implements OnInit {
 
     this.authFacade.requestPasswordReset(email)
       .subscribe((success: boolean) => {
-        this.emailSent = success;
+        this.viewConfig = {
+          ...this.viewConfig,
+          viewType: ResetPasswordViewType.TYPE_EMAIL_SENT,
+        };
+
         this.isLoading = false;
         this.redirectUserToLogin();
       });
   }
 
+  changePassword(): void {
+    this.isLoading = true;
+  }
+
+  /**
+   * This function sets up the components view. This component will be used in multiple ways depending on the provided config.
+   * @param config: config containing the viewType and other supporting values.
+   */
+  private setUpView = (config: ResetPasswordViewInterface): void => {
+    switch (config.viewType) {
+      case ResetPasswordViewType.TYPE_RESET_TOKEN:
+        this.formGroup = this.buildResetPasswordForm();
+        break;
+      case ResetPasswordViewType.TYPE_NEW_REQUEST:
+      default:
+        this.formGroup = this.buildEmailForm(config.attemptedEmail);
+    }
+
+    this.viewConfig = config;
+  };
+
+  /**
+   * This function sets up the form for requesting a password reset token.
+   * If we have a registered login attempt, then we can set up the attempted email by default.
+   * @param attemptedEmail: Email in the registered login attempt.
+   */
   private buildEmailForm(attemptedEmail: string): FormGroup {
     return this.formBuilder.group({
       attemptedEmail: [attemptedEmail, [Validators.required, Validators.email]],
     });
   }
 
+  /**
+   * This function sets up the form for entering a new password.
+   */
+  private buildResetPasswordForm(): FormGroup {
+    return this.formBuilder.group({
+      password: ['', Validators.required],
+    });
+  }
+
+  /**
+   * We call this function after a user has successfully requested a password reset.
+   * We clear all state data related to making that request, then take the user back to login.
+   */
   private redirectUserToLogin(): void {
     setTimeout(() => {
       this.authFacade.clearEmailAttempt();
