@@ -5,7 +5,7 @@ import {of} from 'rxjs';
 import {ActivatedRoute, ActivatedRouteSnapshot} from '@angular/router';
 import {ResetPasswordViewInterface, ResetPasswordViewType} from '../models/view-types.model';
 
-fdescribe('ResetPasswordResolver', () => {
+describe('ResetPasswordResolver', () => {
   const MOCKED_RESET_TOKEN = 'mockedResetToken';
   const MOCKED_EMAIL_ATTEMPT = 'ali@techhive.io';
 
