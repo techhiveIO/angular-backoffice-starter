@@ -1,11 +1,12 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable, of} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {Observable, of, throwError} from 'rxjs';
+import {map, switchMap, tap} from 'rxjs/operators';
 import {environment} from '../../../../environments/environment';
 import {AuthStateApiInterface, AuthStateInterface, ConfirmationTokenInterface} from '../../../shared/models/authState.model';
 import {User, UserApiInterface} from '../../../shared/models/user.model';
 import {MOCKED_CONFIRMATION_EMAIL_TOKEN} from '../../../shared/mocks/auth.mocks';
+import {HttpResponseInterface} from '../../../shared/models/api.models';
 
 @Injectable()
 export class AuthApi {
@@ -25,7 +26,7 @@ export class AuthApi {
 
     return this.http.post(this.API_LOGIN, body)
       .pipe(
-        map((res: any) => res.data),
+        switchMap((res: HttpResponseInterface) => res.success ? of(res.data) : throwError(res.message)),
         map((authState: AuthStateApiInterface) => ({
           token: authState.access_token,
           user: new User(authState.user),

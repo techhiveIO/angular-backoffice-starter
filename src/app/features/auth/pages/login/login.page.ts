@@ -12,6 +12,7 @@ import {ROUTES_AUTH} from '../../../../shared/consts/routes.consts';
 export class LoginPageComponent implements OnInit {
   formGroup: FormGroup;
   isLoading = false;
+  displayForgotPasswordLink = false;
 
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -38,6 +39,7 @@ export class LoginPageComponent implements OnInit {
         },
         error => {
           this.isLoading = false;
+          this.displayForgotPasswordLink = true;
         });
   }
 

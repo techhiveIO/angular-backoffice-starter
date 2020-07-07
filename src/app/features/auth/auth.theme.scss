@@ -40,5 +40,18 @@ form {
 
 .auth-navigation {
   margin: 0.5rem 0 0 auto;
+
   font-style: italic;
+  opacity: .8;
+
+  cursor: pointer;
+  transition: opacity .2s;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.auth-action--secondary {
+  margin-top: 4rem;
 }

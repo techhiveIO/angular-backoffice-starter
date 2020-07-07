@@ -30,6 +30,20 @@
       Sign in
     </button>
 
-    <a class="auth-navigation" (click)="requestNewPassword()">Forgot your password?</a>
+    <a
+      *ngIf="displayForgotPasswordLink"
+      class="auth-navigation"
+      (click)="requestNewPassword()">
+      Forgot your password?
+    </a>
+
+    <button
+      class="auth-action--secondary"
+      mat-button
+      type="button"
+      color="accent"
+    >
+      Or Create A New Account
+    </button>
   </form>
 </div>

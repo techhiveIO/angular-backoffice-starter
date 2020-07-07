@@ -8,6 +8,7 @@ import {AuthApi} from './auth-api.service';
 import {AuthStateInterface, ConfirmationTokenInterface} from '../../../shared/models/authState.model';
 import {User} from '../../../shared/models/user.model';
 import {NotificationsFacade} from '../../services';
+import {loginErrorMessage} from '../../../shared/consts/error-messages.consts';
 
 @Injectable()
 export class AuthFacade {
@@ -24,6 +25,10 @@ export class AuthFacade {
       .pipe(
         tap((authState: Partial<AuthStateInterface>) => this.authStore.dispatch(actionLogin({payload: authState}))),
         map((authState: Partial<AuthStateInterface>) => authState.user),
+        catchError(err => {
+          this.notificationsFacade.displayErrorMessage(loginErrorMessage);
+          return throwError(err);
+        })
       );
   }
 
