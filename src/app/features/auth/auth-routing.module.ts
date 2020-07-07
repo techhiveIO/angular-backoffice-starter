@@ -38,12 +38,19 @@ const routes: Routes = [
         },
       },
       {
-        path: ROUTES_AUTH.CONFIRM_EMAIL,
+        path: `${ROUTES_AUTH.VERIFY_ACCOUNT}/:token`,
         component: ConfirmEmailPageComponent,
         resolve: {
-          token: ConfirmationTokenResolver,
+          viewConfig: ConfirmationTokenResolver,
         },
-      }
+      },
+      {
+        path: `${ROUTES_AUTH.ACCEPT_INVITATIONS}/:token`,
+        component: ConfirmEmailPageComponent,
+        resolve: {
+          viewConfig: ConfirmationTokenResolver,
+        },
+      },
     ]
   }
 ];

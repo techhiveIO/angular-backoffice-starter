@@ -8,7 +8,7 @@ import {AuthApi} from './auth-api.service';
 import {AuthStateInterface, ConfirmationTokenInterface} from '../../../shared/models/authState.model';
 import {User} from '../../../shared/models/user.model';
 import {NotificationsFacade} from '../../services';
-import {loginErrorMessage, signUpErrorMessage} from '../../../shared/consts/error-messages.consts';
+import {confirmRegistrationErrorMessage, loginErrorMessage, signUpErrorMessage} from '../../../shared/consts/error-messages.consts';
 
 @Injectable()
 export class AuthFacade {
@@ -39,6 +39,16 @@ export class AuthFacade {
           this.notificationsFacade.displayErrorMessage(signUpErrorMessage);
           return throwError(err);
         })
+      );
+  }
+
+  public confirmRegistration(token: string): Observable<boolean> {
+    return this.authApi.confirmRegistration(token)
+      .pipe(
+        catchError(err => {
+          this.notificationsFacade.displayErrorMessage(confirmRegistrationErrorMessage);
+          return throwError(err);
+        }),
       );
   }
 

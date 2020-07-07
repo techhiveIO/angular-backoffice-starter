@@ -9,3 +9,15 @@ export interface ResetPasswordViewInterface {
   attemptedEmail?: string;
   resetToken?: string;
 }
+
+export enum ConfirmAccountViewType {
+  TYPE_CONFIRM_REGISTRATION = 'TYPE_CONFIRM_REGISTRATION',
+  TYPE_ACCEPT_INVITATION = 'TYPE_ACCEPT_INVITATION',
+  TYPE_ACCOUNT_VERIFIED = 'TYPE_ACCOUNT_VERIFIED',
+  TYPE_TOKEN_EXPIRED = 'TYPE_TOKEN_EXPIRED',
+}
+
+export interface ConfirmAccountViewInterface {
+  viewType: ConfirmAccountViewType;
+  token: string;
+}

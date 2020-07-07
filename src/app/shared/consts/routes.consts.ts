@@ -9,4 +9,6 @@ export enum ROUTES_AUTH {
   SIGN_UP = 'sign-up',
   RESET_PASSWORD = 'reset-password',
   CONFIRM_EMAIL = 'confirm-email/:token',
+  VERIFY_ACCOUNT = 'verify',
+  ACCEPT_INVITATIONS = 'invitation',
 }

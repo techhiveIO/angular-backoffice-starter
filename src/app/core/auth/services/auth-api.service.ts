@@ -14,6 +14,7 @@ export class AuthApi {
   private readonly API_REGISTER = `${environment.API}/auth/register`;
   private readonly API_FETCH_TOKEN_INFO = `${environment.API}/auth/token`;
   private readonly API_REQUEST_NEW_PASSWORD = `${environment.API}/auth/forgot-password`;
+  private readonly API_VERIFY_REGISTRATION = `${environment.API}/auth/verify`;
 
   constructor(private http: HttpClient) {
   }
@@ -46,6 +47,14 @@ export class AuthApi {
       .pipe(
         switchMap((res: HttpResponseInterface) => res.success ? of(res.data) : throwError(res.message)),
         map((user: UserApiInterface) => new User(user)),
+      );
+  }
+
+  // TODO: should implement proper error message when the server does so.
+  public confirmRegistration(token: string): Observable<any> {
+    return this.http.get(`${this.API_VERIFY_REGISTRATION}?token=${token}`)
+      .pipe(
+        switchMap(res => res ? of(res) : throwError('Error')),
       );
   }
 
