@@ -102,6 +102,7 @@ export class ConfirmEmailPageComponent implements OnInit {
 
     switch (config.viewType) {
       case ConfirmAccountViewType.TYPE_ACCEPT_INVITATION:
+      case ConfirmAccountViewType.TYPE_TOKEN_EXPIRED:
         break;
       case ConfirmAccountViewType.TYPE_CONFIRM_REGISTRATION:
       default:

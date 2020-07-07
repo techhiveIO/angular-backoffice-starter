@@ -1,23 +1,25 @@
 import {AuthStateApiInterface, AuthStateInterface, ConfirmationTokenInterface, ConfirmationTokenType} from '../models/authState.model';
 import {User, UserRole} from '../models/user.model';
+import {ConfirmAccountViewInterface, ConfirmAccountViewType} from '../../features/auth/models/view-types.model';
+
+export const MOCKED_CONFIRM_ACCOUNT_VIEW_VERIFY: ConfirmAccountViewInterface = {
+  token: 'mockedToken',
+  viewType: ConfirmAccountViewType.TYPE_CONFIRM_REGISTRATION,
+};
+
+export const MOCKED_CONFIRM_ACCOUNT_VIEW_EXPIRED: ConfirmAccountViewInterface = {
+  token: 'mockedToken',
+  viewType: ConfirmAccountViewType.TYPE_TOKEN_EXPIRED,
+};
+
+export const MOCKED_CONFIRM_ACCOUNT_VIEW_INVITATION: ConfirmAccountViewInterface = {
+  token: 'mockedToken',
+  viewType: ConfirmAccountViewType.TYPE_ACCEPT_INVITATION,
+};
 
 export const MOCKED_CONFIRMATION_EMAIL_TOKEN: ConfirmationTokenInterface = {
   token: 'mockedToken',
   type: ConfirmationTokenType.CONFIRMATION,
-  userId: '01',
-  email: 'aliobaji@techhive.io',
-};
-
-export const MOCKED_INVITATION_EMAIL_TOKEN: ConfirmationTokenInterface = {
-  token: 'mockedToken',
-  type: ConfirmationTokenType.INVITATION,
-  userId: '01',
-  email: 'aliobaji@techhive.io',
-};
-
-export const MOCKED_EXPIRED_TOKEN: ConfirmationTokenInterface = {
-  token: 'mockedToken',
-  type: ConfirmationTokenType.EXPIRED,
   userId: '01',
   email: 'aliobaji@techhive.io',
 };

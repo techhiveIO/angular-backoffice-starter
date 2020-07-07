@@ -129,7 +129,7 @@ describe('Auth Facade Service', () => {
           .pipe(take(1))
           .subscribe((res) => {
             expect(mockedAuthApi.register).toHaveBeenCalledTimes(1);
-            expect(mockedAuthApi.register).toHaveBeenCalledWith(data.first_name, data.last_name, data.email, mockedPassword);
+            expect(mockedAuthApi.register).toHaveBeenCalledWith(data.first_name, data.last_name, data.email, mockedPassword, undefined);
             expect(res).toEqual(MOCKED_USER);
           });
       });
