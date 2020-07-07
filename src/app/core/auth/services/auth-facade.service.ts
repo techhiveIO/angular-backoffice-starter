@@ -32,8 +32,8 @@ export class AuthFacade {
       );
   }
 
-  public register(firstName: string, lastName: string, email: string, password: string): Observable<any> {
-    return this.authApi.register(firstName, lastName, email, password)
+  public register(firstName: string, lastName: string, email: string, password: string, invitationToken?: string): Observable<any> {
+    return this.authApi.register(firstName, lastName, email, password, invitationToken)
       .pipe(
         catchError(err => {
           this.notificationsFacade.displayErrorMessage(signUpErrorMessage);
@@ -58,10 +58,6 @@ export class AuthFacade {
 
   public isAuthenticated(): Observable<boolean> {
     return this.authStore.pipe(select(selectIsAuthenticated));
-  }
-
-  public decodeVerificationToken(token: string): Observable<ConfirmationTokenInterface> {
-    return this.authApi.fetchVerificationTokenInfo(token);
   }
 
   public storeEmailAttempt(attemptedEmail: string): void {

@@ -149,17 +149,4 @@ describe('Auth Facade Service', () => {
       });
     });
   });
-
-  describe('decodeVerificationToken', () => {
-    beforeEach(async(() => {
-      configureTestingModule(false);
-    }));
-
-    it('should call the correct function in auth api', () => {
-      service.decodeVerificationToken(MOCKED_CONFIRMATION_EMAIL_TOKEN.token);
-
-      expect(mockedAuthApi.fetchVerificationTokenInfo).toHaveBeenCalledTimes(1);
-      expect(mockedAuthApi.fetchVerificationTokenInfo).toHaveBeenCalledWith(MOCKED_CONFIRMATION_EMAIL_TOKEN.token);
-    });
-  });
 });

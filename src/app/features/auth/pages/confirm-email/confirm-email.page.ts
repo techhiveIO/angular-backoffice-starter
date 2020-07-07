@@ -3,6 +3,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ConfirmAccountViewInterface, ConfirmAccountViewType} from '../../models/view-types.model';
 import {ROUTES_AUTH} from '../../../../shared/consts/routes.consts';
 import {AuthFacade} from '../../../../core/auth/services';
+import {User} from '../../../../shared/models/user.model';
+import {map, take} from 'rxjs/operators';
 
 @Component({
   templateUrl: './confirm-email.page.html',
@@ -23,9 +25,10 @@ export class ConfirmEmailPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe((data: { viewConfig: ConfirmAccountViewInterface }) => {
-      this.prepareView(data.viewConfig);
-    });
+    this.activatedRoute.data.pipe(
+      take(1),
+      map((data: { viewConfig: ConfirmAccountViewInterface }) => data.viewConfig)
+    ).subscribe(this.prepareView);
   }
 
   onRequestNewEmail(): void {
@@ -40,10 +43,16 @@ export class ConfirmEmailPageComponent implements OnInit {
    * This function is used for accounts that have been invited by an admin rather than have signed up on their own.
    * These users were invited by email, and still need to input information like their name, mobile, and password.
    */
-  createAccount(data: any): void {
+  createAccount(data: Partial<User>): void {
+    this.isLoading = true;
 
+    this.authFacade.register(data.firstName, data.lastName, data.email, data.password, this.viewConfig.token)
+      .subscribe(this.onConfirmAccountSuccess, this.onTokenExpired);
   }
 
+  /**
+   * Navigates to the login page.
+   */
   navigateToLogin(): void {
     void this.router.navigate([`auth/${ROUTES_AUTH.LOGIN}`]);
   }
@@ -76,6 +85,9 @@ export class ConfirmEmailPageComponent implements OnInit {
     }, 5000);
   };
 
+  /**
+   * This function is an error handler for account verification api calls. It sets up the correct error view and disables loading.
+   */
   private onTokenExpired = () => {
     this.viewConfig = {
       ...this.viewConfig,
@@ -85,13 +97,15 @@ export class ConfirmEmailPageComponent implements OnInit {
     this.isLoading = false;
   };
 
-  private prepareView(config: ConfirmAccountViewInterface): void {
+  private prepareView = (config: ConfirmAccountViewInterface): void => {
     this.viewConfig = config;
 
     switch (config.viewType) {
+      case ConfirmAccountViewType.TYPE_ACCEPT_INVITATION:
+        break;
       case ConfirmAccountViewType.TYPE_CONFIRM_REGISTRATION:
       default:
         this.confirmAccount();
     }
-  }
+  };
 }
