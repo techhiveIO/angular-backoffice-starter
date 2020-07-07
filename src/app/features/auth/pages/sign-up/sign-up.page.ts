@@ -9,6 +9,7 @@ import {User} from '../../../../shared/models/user.model';
 
 export class SignupPageComponent {
   isLoading = false;
+  emailSent = false;
 
   constructor(
     private readonly authFacade: AuthFacade
@@ -19,9 +20,9 @@ export class SignupPageComponent {
     this.isLoading = true;
 
     this.authFacade.register(data.firstName, data.lastName, data.email, data.password)
-      .subscribe((res) => {
+      .subscribe((user: User) => {
           this.isLoading = false;
-          console.log('Response back', res);
+          this.emailSent = true;
         }
       );
   }

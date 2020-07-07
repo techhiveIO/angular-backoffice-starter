@@ -44,6 +44,7 @@ export class AuthApi {
 
     return this.http.post(this.API_REGISTER, body)
       .pipe(
+        switchMap((res: HttpResponseInterface) => res.success ? of(res.data) : throwError(res.message)),
         map((user: UserApiInterface) => new User(user)),
       );
   }

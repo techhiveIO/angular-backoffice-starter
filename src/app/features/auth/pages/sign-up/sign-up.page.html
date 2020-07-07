@@ -1,8 +1,26 @@
 <div class="auth-content">
+  <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+  <a mat-icon-button color="accent" class="auth__btn--back" routerLink="..">
+    <mat-icon>
+      arrow_back
+    </mat-icon>
+    Login Page
+  </a>
   <img src="assets/brand/logo.svg" class="brand-logo"/>
-  <app-registration-form
-    [isLoading]="isLoading"
-    (submitForm)="onSubmit($event)"
-  >
-  </app-registration-form>
+  <ng-container *ngIf="!emailSent">
+    <app-registration-form
+      id="templateDefault"
+      [isLoading]="isLoading"
+      (submitForm)="onSubmit($event)"
+    >
+    </app-registration-form>
+  </ng-container>
+
+  <ng-container *ngIf="emailSent">
+    <h1 class="auth-header">Your account was successfully created.</h1>
+    <p>
+      We have sent you an email with a confirmation link. Please click on that link to complete your registration
+      process.
+    </p>
+  </ng-container>
 </div>

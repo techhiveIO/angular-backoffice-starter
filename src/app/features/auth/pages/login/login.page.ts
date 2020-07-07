@@ -43,11 +43,21 @@ export class LoginPageComponent implements OnInit {
         });
   }
 
+  /**
+   * If the user has already tried logging in before requesting to reset their password,
+   * we will make their lives easier and auto-fill their email address in the next step.
+   *
+   * This function stores the attempted email address in state.
+   */
   requestNewPassword(): void {
     if (this.formGroup.get('email').valid) {
       this.authFacade.storeEmailAttempt(this.formGroup.get('email').value);
     }
 
     void this.router.navigate([`auth/${ROUTES_AUTH.RESET_PASSWORD}`]);
+  }
+
+  navigateToSignUp(): void {
+    void this.router.navigate([`auth/${ROUTES_AUTH.SIGN_UP}`]);
   }
 }

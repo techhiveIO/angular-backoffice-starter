@@ -8,7 +8,7 @@ import {AuthApi} from './auth-api.service';
 import {AuthStateInterface, ConfirmationTokenInterface} from '../../../shared/models/authState.model';
 import {User} from '../../../shared/models/user.model';
 import {NotificationsFacade} from '../../services';
-import {loginErrorMessage} from '../../../shared/consts/error-messages.consts';
+import {loginErrorMessage, signUpErrorMessage} from '../../../shared/consts/error-messages.consts';
 
 @Injectable()
 export class AuthFacade {
@@ -36,7 +36,7 @@ export class AuthFacade {
     return this.authApi.register(firstName, lastName, email, password)
       .pipe(
         catchError(err => {
-          this.notificationsFacade.displayErrorMessage();
+          this.notificationsFacade.displayErrorMessage(signUpErrorMessage);
           return throwError(err);
         })
       );
