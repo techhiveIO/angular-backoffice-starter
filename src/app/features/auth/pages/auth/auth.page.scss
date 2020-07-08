@@ -11,8 +11,16 @@
 }
 
 .content-col {
+  position: relative;
+
   flex-basis: 30%;
   padding: 0 5rem;
+
+  ::ng-deep mat-progress-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 }
 
 .brand-col {

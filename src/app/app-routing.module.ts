@@ -3,21 +3,28 @@ import {Routes, RouterModule} from '@angular/router';
 import {UsersPageComponent} from './features/manage-users/pages';
 import {AuthGuardService} from './core/guards';
 import {IsLoggedInGuard} from './core/guards/isLoggedIn.guard';
+import {ROUTES_GENERAL} from './shared/consts/routes.consts';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'users',
+    redirectTo: ROUTES_GENERAL.USERS,
     pathMatch: 'full',
   },
   {
-    path: 'auth',
+    path: ROUTES_GENERAL.AUTH,
     loadChildren: () =>
       import('./features/auth/auth.module').then(m => m.AuthModule),
     canActivate: [IsLoggedInGuard],
   },
   {
-    path: 'users',
+    path: ROUTES_GENERAL.DASHBOARD,
+    loadChildren: () =>
+      import('./features/dashboard/dashboard.module').then(m => m.DashboardModule),
+    canActivate: [AuthGuardService],
+  },
+  {
+    path: ROUTES_GENERAL.USERS,
     component: UsersPageComponent,
     canActivate: [AuthGuardService],
   }

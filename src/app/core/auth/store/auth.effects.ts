@@ -5,6 +5,7 @@ import {actionLogin, actionLogout} from './authActionTypes';
 import {tap} from 'rxjs/operators';
 import {Router} from '@angular/router';
 import {LocalStorageFacade} from '../../services';
+import {ROUTES_GENERAL} from '../../../shared/consts/routes.consts';
 
 @Injectable()
 export class AuthStoreEffects {
@@ -15,7 +16,7 @@ export class AuthStoreEffects {
   ) {
   }
 
-  @Effect()
+  @Effect({dispatch: false})
   login$ = createEffect(() =>
     this.actions$.pipe(
       ofType(actionLogin),
@@ -23,17 +24,19 @@ export class AuthStoreEffects {
         this.localStorageFacade.setAuthToken(action.payload.token);
         void this.router.navigate(['/']);
       }),
-    )
+    ),
+    {dispatch: false}
   );
 
-  @Effect()
+  @Effect({dispatch: false})
   logout$ = createEffect(() =>
     this.actions$.pipe(
       ofType(actionLogout),
       tap((action) => {
         this.localStorageFacade.clearAuthData();
-        void this.router.navigate(['/']);
+        void this.router.navigate([ROUTES_GENERAL.AUTH]);
       }),
-    )
+    ),
+    {dispatch: false}
   );
 }

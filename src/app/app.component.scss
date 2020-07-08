@@ -1,5 +1,15 @@
 mat-sidenav {
   padding: 1rem;
+
+  ::ng-deep .mat-drawer-inner-container {
+    display: flex;
+    flex-direction: column;
+
+    .user-menu-button {
+      margin-top: auto;
+      margin-bottom: 1rem;
+    }
+  }
 }
 
 mat-sidenav-content {

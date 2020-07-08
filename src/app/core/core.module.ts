@@ -4,7 +4,7 @@ import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {AuthApi, AuthFacade} from './auth/services';
-import {reducers} from './core.state';
+import {metaReducers, reducers} from './core.state';
 import {AuthStoreEffects} from './auth/store/auth.effects';
 
 const LIBRARY_MODULES = [
@@ -22,6 +22,7 @@ const SERVICES = [
   declarations: [],
   imports: [
     StoreModule.forRoot(reducers, {
+      metaReducers,
       runtimeChecks: {
         strictStateImmutability: true,
         strictActionImmutability: true

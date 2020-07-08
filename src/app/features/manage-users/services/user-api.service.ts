@@ -16,8 +16,6 @@ export class UserApiService {
     return this.http
       .get(this.API_USERS)
       .pipe(
-        map((res: any) => res.data),
-        map(data => data.users),
         map((users: UserApiInterface[]) => {
           return users.map((user: UserApiInterface) => new User(user));
         }),
@@ -45,8 +43,6 @@ export class UserApiService {
   }
 
   public deleteUser(userID: string): Observable<any> {
-    const params = {id: userID};
-
-    return this.http.delete(this.API_USERS, {params});
+    return this.http.delete(`${this.API_USERS}/${userID}`);
   }
 }

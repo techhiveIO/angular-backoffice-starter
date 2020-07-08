@@ -14,11 +14,13 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {HttpClient} from '@angular/common/http';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatListModule} from '@angular/material/list';
 
 const LIBRARY_MODULES = [
   MatSidenavModule,
   MatIconModule,
   MatMenuModule,
+  MatListModule,
 ];
 
 export function HttpLoaderFactory(http: HttpClient) {

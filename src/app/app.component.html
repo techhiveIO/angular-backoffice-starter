@@ -1,11 +1,24 @@
 <ng-container>
-  <mat-sidenav-container [dir]="direction">
+  <mat-sidenav-container [dir]="currentReadDirection$ | async">
     <mat-sidenav
       *ngIf="loadMembersLayout"
       [opened]="drawerOpened"
       mode="side"
       [fixedInViewport]="true">
       <img src="assets/brand/logo.svg" class="brand-logo"/>
+      <mat-nav-list>
+        <a
+          mat-list-item
+          *ngFor="let link of navigationLinks"
+          [routerLink]="link.path"
+        >
+          {{link.label | translate}}
+        </a>
+      </mat-nav-list>
+      <button mat-button [matMenuTriggerFor]="userMenu" class="user-menu-button">User</button>
+      <mat-menu #userMenu>
+        <button mat-menu-item (click)="logOutUser()">Log out</button>
+      </mat-menu>
     </mat-sidenav>
     <mat-sidenav-content>
 
@@ -20,7 +33,7 @@
           (click)="toggleDrawer()"
         >
           <mat-icon>{{drawerOpened ? 'menu' : 'menu_open'}}</mat-icon>
-          Navigation
+          {{"LABELS.NAVIGATION" | translate}}
         </button>
 
         <button mat-button color="primary" [matMenuTriggerFor]="menu">{{currentLanguage$ | async | translate}}</button>

@@ -114,7 +114,7 @@ describe('UsersFacadeService', () => {
       configureTestingModule();
     }));
 
-    const fieldsToUpdate = {firstName: MOCKED_USER.firstName, lastName: MOCKED_USER.lastName};
+    const fieldsToUpdate = {first_name: MOCKED_USER.firstName, last_name: MOCKED_USER.lastName};
 
     it('should call the correct api layer function to update a user', () => {
       service.updateUser(MOCKED_USER.id, fieldsToUpdate).pipe(take(1)).subscribe();

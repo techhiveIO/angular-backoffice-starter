@@ -1,6 +1,7 @@
 <div class="auth-content">
+  <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
   <img src="assets/brand/logo.svg" class="brand-logo"/>
-  <form [formGroup]="formGroup">
+  <form [formGroup]="formGroup" (submit)="onSubmit()">
     <h2 class="auth-subheader">{{'AUTH.GREETING' | translate}}</h2>
     <h1 class="auth-header" [innerHTML]="'AUTH.SIGN_IN_HEADING' | translate"></h1>
     <mat-form-field>
@@ -24,11 +25,27 @@
       class="auth-action"
       [disabled]="!formGroup.valid || isLoading"
       mat-raised-button
+      type="submit"
       color="primary"
     >
       Sign in
     </button>
 
-    <a routerLink="/auth/sign-up" class="auth-navigation">Create a new account here.</a>
+    <a
+      *ngIf="displayForgotPasswordLink"
+      class="auth-navigation"
+      (click)="requestNewPassword()">
+      Forgot your password?
+    </a>
+
+    <button
+      class="auth-action--secondary"
+      mat-button
+      type="button"
+      color="accent"
+      (click)="navigateToSignUp()"
+    >
+      Or Create A New Account
+    </button>
   </form>
 </div>

@@ -4,6 +4,9 @@ import {NavigationStart, Router, RouterEvent} from '@angular/router';
 import {of, Subject} from 'rxjs';
 import {TranslateModule, TranslateService} from '@ngx-translate/core';
 import {EventEmitter} from '@angular/core';
+import {AVAILABLE_LANGUAGES, READ_DIRECTIONS} from './shared/models/settingsState.model';
+import {SettingsFacade} from './core/settings/services';
+import {AuthFacade} from './core/auth/services';
 
 describe('AppComponent', () => {
   const onLangChangeSubject: Subject<{ lang: string }> = new Subject<{ lang: string }>();
@@ -13,6 +16,8 @@ describe('AppComponent', () => {
   let component: AppComponent;
   let mockedTranslateService: jasmine.SpyObj<TranslateService>;
   let mockedRouter: Partial<Router>;
+  let mockedSettingsFacade: jasmine.SpyObj<SettingsFacade>;
+  let mockedAuthFacade: jasmine.SpyObj<AuthFacade>;
 
   const configureTestingModule: () => void = () => {
     mockedTranslateService = {
@@ -22,6 +27,14 @@ describe('AppComponent', () => {
       onDefaultLangChange: new EventEmitter(),
       get: () => of(''),
     };
+
+    mockedSettingsFacade = jasmine.createSpyObj(
+      SettingsFacade,
+      ['getCurrentReadDirection', 'getCurrentLanguage', 'setLanguage']
+    );
+    mockedSettingsFacade.getCurrentLanguage.and.returnValue(of(AVAILABLE_LANGUAGES.en));
+    mockedSettingsFacade.getCurrentReadDirection.and.returnValue(of(READ_DIRECTIONS.LTR));
+    mockedAuthFacade = jasmine.createSpyObj(AuthFacade, ['signOut']);
 
     mockedRouter = {
       events: routerEventsSubject.asObservable(),
@@ -35,6 +48,8 @@ describe('AppComponent', () => {
       providers: [
         {provide: Router, useValue: mockedRouter},
         {provide: TranslateService, useValue: mockedTranslateService},
+        {provide: SettingsFacade, useValue: mockedSettingsFacade},
+        {provide: AuthFacade, useValue: mockedAuthFacade},
       ],
     }).compileComponents();
   };
@@ -106,11 +121,26 @@ describe('AppComponent', () => {
     });
 
     it('should tell the TranslateService to use the provided language', () => {
-      const mockedNewLanguage = 'ar';
+      const mockedNewLanguage = AVAILABLE_LANGUAGES.ar;
       component.changeLanguage(mockedNewLanguage);
 
-      expect(mockedTranslateService.use).toHaveBeenCalledTimes(1);
-      expect(mockedTranslateService.use).toHaveBeenCalledWith(mockedNewLanguage);
+      expect(mockedSettingsFacade.setLanguage).toHaveBeenCalledTimes(1);
+      expect(mockedSettingsFacade.setLanguage).toHaveBeenCalledWith(mockedNewLanguage);
+    });
+  });
+
+  describe('logOutUser', () => {
+    beforeEach(async(() => {
+      configureTestingModule();
+    }));
+
+    beforeEach(() => {
+      initializeTestComponent();
+    });
+
+    it('should call the logout function', () => {
+      component.logOutUser();
+      expect(mockedAuthFacade.signOut).toHaveBeenCalledTimes(1);
     });
   });
 });

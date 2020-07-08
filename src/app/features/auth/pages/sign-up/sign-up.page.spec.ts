@@ -1,23 +1,17 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {SignupPageComponent} from './sign-up.page';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {BrowserTestingModule} from '@angular/platform-browser/testing';
+import {AuthFacade} from '../../../../core/auth/services';
+import {of} from 'rxjs';
 
 describe('SignUpPage', () => {
   let fixture: ComponentFixture<SignupPageComponent>;
   let component: SignupPageComponent;
-  let mockedFormBuilder: jasmine.SpyObj<FormBuilder>;
-
-  const mockedFormGroup: FormGroup = new FormBuilder().group({
-    firstName: ['', Validators.required],
-    lastName: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', Validators.required],
-  });
+  let mockedAuthFacade: jasmine.SpyObj<AuthFacade>;
 
   const configureTestingModule: () => void = () => {
-    mockedFormBuilder = jasmine.createSpyObj('FormBuilder', ['group']);
-    mockedFormBuilder.group.and.returnValue(mockedFormGroup);
+    mockedAuthFacade = jasmine.createSpyObj('AuthFacade', ['register']);
+    mockedAuthFacade.register.and.returnValue(of({}));
 
     TestBed.configureTestingModule({
       imports: [
@@ -25,7 +19,7 @@ describe('SignUpPage', () => {
       ],
       declarations: [SignupPageComponent],
       providers: [
-        {provide: FormBuilder, useValue: mockedFormBuilder},
+        {provide: AuthFacade, useValue: mockedAuthFacade},
       ],
     }).compileComponents();
   };
@@ -37,44 +31,6 @@ describe('SignUpPage', () => {
     fixture.detectChanges();
   };
 
-  describe('onInit', () => {
-    beforeEach(async(() => {
-      configureTestingModule();
-    }));
-
-    beforeEach(() => {
-      initializeTestComponent();
-    });
-
-    it('should build the login form', () => {
-      expect(mockedFormBuilder.group).toHaveBeenCalledTimes(1);
-      expect(mockedFormBuilder.group).toHaveBeenCalledWith({
-        firstName: ['', Validators.required],
-        lastName: ['', Validators.required],
-        email: ['', [Validators.required, Validators.email]],
-        password: ['', Validators.required],
-      });
-    });
-  });
-
-  describe('toggleHidePassword', () => {
-    beforeEach(async(() => {
-      configureTestingModule();
-    }));
-
-    beforeEach(() => {
-      initializeTestComponent();
-    });
-
-    it('should invert the hidden flag if clicked', () => {
-      const defaultFlagValue = false;
-      component.hidden = defaultFlagValue;
-      component.toggleHidePassword();
-
-      expect(component.hidden).not.toBe(defaultFlagValue);
-    });
-  });
-
   describe('OnSubmit', () => {
     beforeEach(async(() => {
       configureTestingModule();
@@ -84,9 +40,23 @@ describe('SignUpPage', () => {
       initializeTestComponent();
     });
 
-    it('should set the loading flag', () => {
-      component.onSubmit();
-      expect(component.isLoading).toBe(true);
+    it('should call the correct register authFacade function', () => {
+
+      const mockedFormData = {
+        firstName: 'fname',
+        lastName: 'lname',
+        email: 'ali@techhive.io',
+        password: '123123123',
+      };
+
+      component.onSubmit(mockedFormData);
+      expect(mockedAuthFacade.register).toHaveBeenCalledTimes(1);
+      expect(mockedAuthFacade.register).toHaveBeenCalledWith(
+        mockedFormData.firstName,
+        mockedFormData.lastName,
+        mockedFormData.email,
+        mockedFormData.password
+      );
     });
   });
 });

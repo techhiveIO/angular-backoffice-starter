@@ -43,7 +43,7 @@ describe('Auth Api Service', () => {
 
       const postLoginRequest: TestRequest = httpMock.expectOne({
         method: 'POST',
-        url: `${environment.API}/login`,
+        url: `${environment.API}/auth/login`,
       });
 
       postLoginRequest.flush({data: MOCKED_AUTH_API_STATE});

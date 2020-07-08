@@ -1,60 +1,26 @@
 <div class="auth-content">
+  <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+  <a mat-icon-button color="accent" class="auth__btn--back" routerLink="..">
+    <mat-icon>
+      arrow_back
+    </mat-icon>
+    Login Page
+  </a>
   <img src="assets/brand/logo.svg" class="brand-logo"/>
-  <form [formGroup]="formGroup">
-    <h1 class="auth-header">Register a new account.</h1>
-
-    <mat-form-field>
-      <mat-label>First Name</mat-label>
-      <input matInput formControlName="firstName" type="text" placeholder="First Name"/>
-      <mat-error *ngIf="formGroup.controls.firstName.errors?.required">This field is required</mat-error>
-    </mat-form-field>
-
-    <mat-form-field>
-      <mat-label>Last Name</mat-label>
-      <input matInput formControlName="lastName" type="text" placeholder="Last Name"/>
-      <mat-error *ngIf="formGroup.controls.lastName.errors?.required">This field is required</mat-error>
-    </mat-form-field>
-
-    <mat-form-field>
-      <mat-label>Email</mat-label>
-      <input matInput formControlName="email" type="text" placeholder="Email"/>
-      <mat-error *ngIf="formGroup.controls.email.errors?.required">This field is required</mat-error>
-      <mat-error *ngIf="formGroup.controls.email.errors?.email">Please enter a valid email.</mat-error>
-    </mat-form-field>
-
-    <mat-form-field>
-      <mat-label>Password</mat-label>
-      <input
-        matInput
-        formControlName="password"
-        [type]="hidden ? 'password' : 'text'"
-        placeholder="********"
-      />
-      <button
-        type="button"
-        mat-button
-        matSuffix
-        mat-icon-button
-        aria-label="Clear"
-        (click)="toggleHidePassword()">
-        <mat-icon *ngIf="hidden">visibility_off</mat-icon>
-        <mat-icon *ngIf="!hidden">visibility</mat-icon>
-      </button>
-      <mat-error *ngIf="formGroup.controls.password.errors?.required">
-        You must enter a password to continue.
-      </mat-error>
-    </mat-form-field>
-
-    <button
-      type="submit"
-      class="auth-action"
-      [disabled]="!formGroup.valid || isLoading"
-      mat-raised-button
-      color="primary"
+  <ng-container *ngIf="!emailSent">
+    <app-registration-form
+      id="templateDefault"
+      [isLoading]="isLoading"
+      (submitForm)="onSubmit($event)"
     >
-      Create my account
-    </button>
+    </app-registration-form>
+  </ng-container>
 
-    <a routerLink="/auth/login" class="auth-navigation">Already have an account?</a>
-  </form>
+  <ng-container *ngIf="emailSent">
+    <h1 class="auth-header">Your account was successfully created.</h1>
+    <p>
+      We have sent you an email with a confirmation link. Please click on that link to complete your registration
+      process.
+    </p>
+  </ng-container>
 </div>

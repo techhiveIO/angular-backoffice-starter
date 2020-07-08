@@ -3,11 +3,17 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {BrowserTestingModule} from '@angular/platform-browser/testing';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {TranslateModule} from '@ngx-translate/core';
+import {AuthFacade} from '../../../../core/auth/services';
+import {of} from 'rxjs';
+import {MOCKED_USER} from '../../../../shared/mocks/users.mocks';
+import {Router} from '@angular/router';
 
 describe('LoginPage', () => {
   let fixture: ComponentFixture<LoginPageComponent>;
   let component: LoginPageComponent;
   let mockedFormBuilder: jasmine.SpyObj<FormBuilder>;
+  let mockedAuthFacade: jasmine.SpyObj<AuthFacade>;
+  let mockedRouter: jasmine.SpyObj<Router>;
 
   const mockedFormGroup: FormGroup = new FormBuilder().group({
     email: ['', [Validators.required, Validators.email]],
@@ -18,6 +24,9 @@ describe('LoginPage', () => {
   const configureTestingModule: () => void = () => {
     mockedFormBuilder = jasmine.createSpyObj('FormBuilder', ['group']);
     mockedFormBuilder.group.and.returnValue(mockedFormGroup);
+    mockedAuthFacade = jasmine.createSpyObj('AuthFacade', ['attemptLogin']);
+    mockedAuthFacade.attemptLogin.and.returnValue(of(MOCKED_USER));
+    mockedRouter = jasmine.createSpyObj(Router, ['navigate']);
 
     TestBed.configureTestingModule({
       imports: [
@@ -27,6 +36,8 @@ describe('LoginPage', () => {
       declarations: [LoginPageComponent],
       providers: [
         {provide: FormBuilder, useValue: mockedFormBuilder},
+        {provide: AuthFacade, useValue: mockedAuthFacade},
+        {provide: Router, useValue: mockedRouter},
       ],
     }).compileComponents();
   };
@@ -66,9 +77,17 @@ describe('LoginPage', () => {
       initializeTestComponent();
     });
 
-    it('should set the loading flag', () => {
+    it('should call the correct login authFacade function', () => {
+      const mockedFormData = {
+        email: 'ali@techhive.io',
+        password: '123123123',
+      };
+
+      component.formGroup.patchValue(mockedFormData);
+
       component.onSubmit();
-      expect(component.isLoading).toBe(true);
+      expect(mockedAuthFacade.attemptLogin).toHaveBeenCalledTimes(1);
+      expect(mockedAuthFacade.attemptLogin).toHaveBeenCalledWith(mockedFormData.email, mockedFormData.password);
     });
   });
 });

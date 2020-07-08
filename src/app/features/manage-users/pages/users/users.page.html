@@ -1,11 +1,15 @@
 <app-general-layout>
-  <h2>Users and Employees</h2>
-  <p>
-    This is a list of all the users with access to your organization's back-office system.
-    Anyone with admin access may add and remove users, or edit the information of any current user.
-  </p>
+  <h2>{{"USERS.HEADING" | translate}}</h2>
+  <p>{{"USERS.DESCRIPTION" | translate}}</p>
+
+  <button mat-raised-button color="primary" (click)="onCreateUser()">
+    <mat-icon>add</mat-icon>
+    {{"USERS.CREATE_NEW" | translate | titlecase}}
+  </button>
+
   <app-users-list
     [users]="allUsers$"
+    [isLoading]="isLoading"
     (deleteUser)="onDeleteUser($event)"
     (editUser)="onEditUserInfo($event)"
   ></app-users-list>

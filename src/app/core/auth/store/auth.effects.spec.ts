@@ -6,6 +6,7 @@ import {RouterTestingModule} from '@angular/router/testing';
 import {LocalStorageFacade} from '../../services';
 import {Router} from '@angular/router';
 import {MOCKED_AUTH_STATE} from '../../../shared/mocks/auth.mocks';
+import {ROUTES_GENERAL} from '../../../shared/consts/routes.consts';
 
 describe('Auth State Effects', () => {
   let effects: AuthStoreEffects;
@@ -62,10 +63,10 @@ describe('Auth State Effects', () => {
         expect(action.type).toEqual(AuthActionTypes.LOGOUT);
         expect(mockedLocalStorageFacade.clearAuthData).toHaveBeenCalledTimes(1);
         expect(mockedRouter.navigate).toHaveBeenCalledTimes(1);
-        expect(mockedRouter.navigate).toHaveBeenCalledWith(['/']);
+        expect(mockedRouter.navigate).toHaveBeenCalledWith([ROUTES_GENERAL.AUTH]);
       });
 
-      store.dispatch(actionLogout());
+      store.dispatch(actionLogout({}));
     });
   });
 

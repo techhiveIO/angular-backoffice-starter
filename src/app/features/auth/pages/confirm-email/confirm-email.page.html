@@ -1,0 +1,71 @@
+<mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+<div class="auth-content" [ngSwitch]="viewConfig.viewType">
+  <a mat-icon-button color="accent" class="auth__btn--back" routerLink="/auth/login">
+    <mat-icon>
+      arrow_back
+    </mat-icon> Back to login
+  </a>
+  <img src="assets/brand/logo.svg" class="brand-logo"/>
+  <ng-container *ngIf="viewConfig.viewType === allViewTypes.TYPE_TOKEN_EXPIRED">
+    <div id="templateExpiredToken">
+      <h1 class="auth-header">
+        The verification code has expired.
+      </h1>
+      <p>
+        The verification code you tried to use has expired. If this is your email address:
+        <span class="highlight">{{'ali@techhive.io' | HideEmail}}</span>, you may request a new verification email.
+      </p>
+      <button
+        mat-flat-button
+        color="primary"
+        [disabled]="isLoading"
+        (click)="onRequestNewEmail()"
+      >
+        Request Verification Email
+      </button>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="viewConfig.viewType === allViewTypes.TYPE_ACCEPT_INVITATION">
+    <app-registration-form
+      id="templateInvitationToken"
+      [isLoading]="isLoading"
+      (submitForm)="createAccount($event)"
+    >
+    </app-registration-form>
+  </ng-container>
+
+  <ng-container *ngIf="viewConfig.viewType === allViewTypes.TYPE_CONFIRM_REGISTRATION">
+    <div id="templateConfirmationToken">
+      <h1 class="auth-header">
+        Hello,
+      </h1>
+      <h2>
+        Please wait while we confirm your account.
+      </h2>
+      <p>
+        We will redirect you to the login page once we are done.
+      </p>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="viewConfig.viewType === allViewTypes.TYPE_ACCOUNT_VERIFIED">
+    <div id="templateSuccess">
+      <h1 class="auth-header">
+        Your account is successfully verified.
+      </h1>
+      <p>
+        You will now be redirected to the login page.
+      </p>
+
+      <button
+        mat-flat-button
+        type="button"
+        color="accent"
+        (click)="navigateToLogin()"
+      >
+        Go to Login Now
+      </button>
+    </div>
+  </ng-container>
+</div>
