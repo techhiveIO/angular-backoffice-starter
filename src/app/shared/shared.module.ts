@@ -27,7 +27,7 @@ const LIBRARY_MODULES = [
 const PIPES = [HideEmailPipe];
 
 const ENTRY_COMPONENTS = [ConfirmationDialogComponent];
-const COMPONENTS = [...ENTRY_COMPONENTS, GeneralLayoutComponent,];
+const COMPONENTS = [...ENTRY_COMPONENTS, GeneralLayoutComponent];
 
 @NgModule({
   imports: [

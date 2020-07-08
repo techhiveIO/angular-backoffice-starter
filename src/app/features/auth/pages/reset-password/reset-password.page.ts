@@ -70,7 +70,7 @@ export class ResetPasswordPageComponent implements OnInit {
     }
 
     this.viewConfig = config;
-  };
+  }
 
   /**
    * This function sets up the form for requesting a password reset token.

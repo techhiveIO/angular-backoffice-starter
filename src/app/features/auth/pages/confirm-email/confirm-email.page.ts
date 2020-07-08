@@ -83,7 +83,7 @@ export class ConfirmEmailPageComponent implements OnInit {
     setTimeout(() => {
       this.navigateToLogin();
     }, 5000);
-  };
+  }
 
   /**
    * This function is an error handler for account verification api calls. It sets up the correct error view and disables loading.
@@ -95,7 +95,7 @@ export class ConfirmEmailPageComponent implements OnInit {
     };
 
     this.isLoading = false;
-  };
+  }
 
   private prepareView = (config: ConfirmAccountViewInterface): void => {
     this.viewConfig = config;
@@ -108,5 +108,5 @@ export class ConfirmEmailPageComponent implements OnInit {
       default:
         this.confirmAccount();
     }
-  };
+  }
 }

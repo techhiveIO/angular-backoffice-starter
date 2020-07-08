@@ -5,6 +5,8 @@ import {take} from 'rxjs/operators';
 import {environment} from '../../../../environments/environment';
 import {AuthStateInterface} from '../../../shared/models/authState.model';
 import {MOCKED_AUTH_API_STATE} from '../../../shared/mocks/auth.mocks';
+import {HttpResponse} from '@angular/common/http';
+import {HttpResponseInterface} from '../../../shared/models/api.models';
 
 describe('Auth Api Service', () => {
   let service: AuthApi;
@@ -46,7 +48,12 @@ describe('Auth Api Service', () => {
         url: `${environment.API}/auth/login`,
       });
 
-      postLoginRequest.flush({data: MOCKED_AUTH_API_STATE});
+      const mockedResponse: HttpResponseInterface = {
+        message: '',
+        success: true,
+        data: MOCKED_AUTH_API_STATE
+      };
+      postLoginRequest.flush(mockedResponse);
     });
   });
 });

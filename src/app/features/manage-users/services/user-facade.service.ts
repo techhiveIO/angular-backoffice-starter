@@ -41,7 +41,7 @@ export class UserFacadeService {
           },
         ),
       );
-  };
+  }
 
   public updateUser(userID: string, userFields: Partial<Omit<UserApiInterface, 'id'>>): Observable<any> {
     return this.userApi
