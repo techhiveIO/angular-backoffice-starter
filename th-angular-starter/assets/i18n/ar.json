@@ -1,4 +1,18 @@
 {
+  "LABELS": {
+    "DASHBOARD": "لوحة القيادة",
+    "USERS":  "إدارة المستخدمين",
+    "NAVIGATION": "ملاحة المنصة",
+    "FIRST_NAME": "الإسم الأول",
+    "LAST_NAME": "إسم العائلة",
+    "EMAIL": "البريد الإلكتروني",
+    "PHONE": "رقم الجوال",
+    "ROLE": "دور العميل",
+    "PASSWORD": "كلمة السر",
+    "CONFIRM": "القبول",
+    "CANCEL": "إلغاء",
+    "AUTO_GENERATE_PASSWORD": "إنشاء كلمة المرور تلقائيًا"
+  },
   "TRANSLATION": {
     "EN": "الإنجليزية",
     "AR": "العربية"
@@ -6,5 +20,10 @@
   "AUTH": {
     "GREETING": "هلا و الله،",
     "SIGN_IN_HEADING": "سجل دخولك عند <span class='highlight'>تِيك هايف أي أو</span>"
+  },
+  "USERS": {
+    "HEADING": "المستخدمين",
+    "DESCRIPTION": "لائحة بكل مستخدمين المنصة.",
+    "CREATE_NEW": "أدخل عامل جديد"
   }
 }

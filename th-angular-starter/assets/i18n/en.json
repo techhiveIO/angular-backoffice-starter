@@ -1,4 +1,18 @@
 {
+  "LABELS": {
+    "DASHBOARD": "Dashboard",
+    "USERS": "Users Management",
+    "NAVIGATION": "Navigation",
+    "FIRST_NAME": "First Name",
+    "LAST_NAME": "Last Name",
+    "EMAIL": "Email Address",
+    "PHONE": "Phone Number",
+    "ROLE": "User Role",
+    "PASSWORD": "Password",
+    "CONFIRM": "Confirm",
+    "CANCEL": "Cancel",
+    "AUTO_GENERATE_PASSWORD": "Auto Generate Password"
+  },
   "TRANSLATION": {
     "EN": "English",
     "AR": "Arabic"
@@ -6,5 +20,10 @@
   "AUTH": {
     "GREETING": "Hello,",
     "SIGN_IN_HEADING": "Sign in to <span class='highlight'>TechHive.IO</span>"
+  },
+  "USERS": {
+    "HEADING": "Users and Employees",
+    "DESCRIPTION": "This is a list of all the users with access to your organization's back-office system. Anyone with admin access may add and remove users, or edit the information of any current user.",
+    "CREATE_NEW": "Create new"
   }
 }
