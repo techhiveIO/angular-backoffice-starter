@@ -3,7 +3,7 @@ import {actionStoreUsers} from './users.actions';
 import {User} from '../../../shared/models/user.model';
 
 export interface UserStateInterface {
-  users: User[],
+  users: User[];
 }
 
 export const initialState: UserStateInterface = {

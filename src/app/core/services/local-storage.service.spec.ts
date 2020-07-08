@@ -65,7 +65,7 @@ describe('localStorageService', () => {
     it('should clear the auth token', () => {
       service.clearAuthData();
 
-      expect(localStorage.getItem(TOKEN_KEY)).toBeNull()
+      expect(localStorage.getItem(TOKEN_KEY)).toBeNull();
     });
   });
 });
