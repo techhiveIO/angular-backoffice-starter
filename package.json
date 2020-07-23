@@ -11,7 +11,7 @@
     "test:cov": "ng test --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy:github": "ng build --prod --output-path docs --base-href /angular-backoffice-starter/"
+    "deploy:github": "ng build --prod --output-path docs --base-href /angular-backoffice-starter/ && cp-cli docs/index.html docs/404.html"
   },
   "private": true,
   "dependencies": {
@@ -30,6 +30,7 @@
     "@ngrx/store": "^9.2.0",
     "@ngx-translate/core": "^13.0.0",
     "@ngx-translate/http-loader": "^6.0.0",
+    "cp-cli": "^2.0.0",
     "karma-mocha-reporter": "^2.2.5",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
