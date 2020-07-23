@@ -1,5 +1,5 @@
 {
-  "name": "th-angular-starter",
+  "name": "angular-backoffice-starter",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -10,21 +10,22 @@
     "test:watch": "ng test",
     "test:cov": "ng test --code-coverage",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "deploy:github": "ng build --prod --output-path docs --base-href /angular-backoffice-starter/"
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "~10.0.3",
-    "@angular/cdk": "~10.0.1",
-    "@angular/common": "~10.0.3",
-    "@angular/compiler": "~10.0.3",
-    "@angular/core": "~10.0.3",
-    "@angular/forms": "~10.0.3",
-    "@angular/material": "^10.0.1",
-    "@angular/platform-browser": "~10.0.3",
-    "@angular/platform-browser-dynamic": "~10.0.3",
-    "@angular/router": "~10.0.3",
-    "@babel/compat-data": "^7.10.4",
+    "@angular/animations": "~10.0.5",
+    "@angular/cdk": "~10.1.0",
+    "@angular/common": "~10.0.5",
+    "@angular/compiler": "~10.0.5",
+    "@angular/core": "~10.0.5",
+    "@angular/forms": "~10.0.5",
+    "@angular/material": "^10.1.0",
+    "@angular/platform-browser": "~10.0.5",
+    "@angular/platform-browser-dynamic": "~10.0.5",
+    "@angular/router": "~10.0.5",
+    "@babel/compat-data": "^7.10.5",
     "@ngrx/effects": "^9.2.0",
     "@ngrx/store": "^9.2.0",
     "@ngx-translate/core": "^13.0.0",
@@ -35,13 +36,13 @@
     "zone.js": "~0.10.3"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.1000.2",
-    "@angular/cli": "^10.0.2",
-    "@angular/compiler-cli": "~10.0.3",
-    "@angular/language-service": "~10.0.3",
+    "@angular-devkit/build-angular": "^0.1000.4",
+    "@angular/cli": "^10.0.4",
+    "@angular/compiler-cli": "~10.0.5",
+    "@angular/language-service": "~10.0.5",
     "@types/jasmine": "~3.5.11",
     "@types/jasminewd2": "~2.0.8",
-    "@types/node": "~14.0.23",
+    "@types/node": "~14.0.24",
     "codelyzer": "^6.0.0",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~5.0.2",
@@ -53,6 +54,6 @@
     "protractor": "~7.0.0",
     "ts-node": "~8.10.2",
     "tslint": "~6.1.2",
-    "typescript": "^3.9.6"
+    "typescript": "^3.9.7"
   }
 }
