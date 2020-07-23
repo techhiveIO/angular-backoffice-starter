@@ -1,5 +1,5 @@
 {
-  "name": "th-angular-starter",
+  "name": "angular-backoffice-starter",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -10,7 +10,8 @@
     "test:watch": "ng test",
     "test:cov": "ng test --code-coverage",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "deploy:github": "ng build --prod --output-path docs --base-href /angular-backoffice-starter/"
   },
   "private": true,
   "dependencies": {
